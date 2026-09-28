@@ -119,9 +119,27 @@ export interface AlertsResponse {
   room: IncidentRoom | null
 }
 
+export interface Citation {
+  playbook_id: string
+  section: string
+  label: string        // "[PB-02 §7]"
+  cited_text: string   // exact passage from the playbook (returned by the API)
+}
+
+export interface CitedAnswer {
+  text: string         // markdown, with [PB-xx §n] labels after cited parts
+  citations: Citation[]
+}
+
 export interface ChatMessage {
   id: string
-  author: Person
+  role: 'user' | 'ai' | 'system'   // system: room events such as an invite
+  author: Person | null          // null for the AI
   text: string
-  at: string          // replay time the message was sent at
+  at: string                     // replay time the message was sent at
+  kind?: 'answer' | 'report' | 'playbook'   // AI messages: which command produced it
+  citations?: Citation[]
+  pending?: boolean              // AI is still working on it
+  error?: boolean
+  approved?: { by: string; at: string }     // reports: approved by a person
 }

@@ -1,14 +1,18 @@
-import { useState } from 'react'
-import { formatTime, useCurrent, useStore } from '../store'
+import { useEffect, useRef, useState } from 'react'
+import { formatTime, useCurrent, useRoomMembers, useStore } from '../store'
+import ChatInput from './ChatInput'
+import ChatMessageView from './ChatMessageView'
 import TierBadge from './TierBadge'
 
 // Opens automatically when the first asset reaches Critical. System messages come from the alert rules;
-// people can post messages. The AI briefing will appear here once the AI service is connected.
+// people post messages, and the AI answers questions and slash commands (/generate_report, /playbook).
 export default function IncidentRoom() {
-  const { user, chat, sendChat, select, setView } = useStore()
+  const { user, chat, select, setView } = useStore()
   const { alerts } = useCurrent()
-  const [text, setText] = useState('')
   const room = alerts?.room
+  const members = useRoomMembers()
+  const bottom = useRef<HTMLDivElement>(null)
+  useEffect(() => { bottom.current?.scrollIntoView({ behavior: 'smooth' }) }, [chat])
 
   if (!room) {
     return (
@@ -22,7 +26,7 @@ export default function IncidentRoom() {
   }
 
   const system = (alerts?.alerts ?? []).filter((a) => a.tier === 'Critical')
-  const isMember = room.members.some((m) => m.employee_id === user?.employee_id)
+  const isMember = members.all.some((m) => m.employee_id === user?.employee_id)
   const feed = [
     ...system.map((a) => ({ kind: 'system' as const, at: a.issued_at, a })),
     ...chat.map((c) => ({ kind: 'chat' as const, at: c.at, c })),
@@ -55,25 +59,18 @@ export default function IncidentRoom() {
               <div className="mt-1 text-xs text-slate-500">Added: {item.a.recipients.map((r) => r.name).join(', ')}</div>
             </div>
           ) : (
-            <div key={item.c.id} className={`flex ${item.c.author.employee_id === user?.employee_id ? 'justify-end' : ''}`}>
-              <div className="max-w-lg rounded-lg bg-white p-3 text-sm shadow-sm">
-                <div className="mb-1 text-xs text-slate-500"><b className="text-navy">{item.c.author.name}</b> · {formatTime(item.at)}</div>
-                {item.c.text}
-              </div>
-            </div>
+            <ChatMessageView key={item.c.id} msg={item.c} />
           ))}
-          <div className="rounded border border-dashed border-teal/50 bg-white p-3 text-xs text-slate-500">
-            <b className="text-teal">AI assistant</b> · a cited briefing and draft incident report will be posted here
-            (not connected yet).
-          </div>
+          {chat.length === 0 && (
+            <div className="rounded border border-dashed border-teal/50 bg-white p-3 text-xs text-slate-500">
+              <b className="text-teal">AI assistant</b> · type <code className="text-teal">/ask</code> to ask a question, <code className="text-teal">/generate_report</code> for
+              a cited situation briefing (PB-04 §4) or <code className="text-teal">/playbook</code> for playbook guidance.
+            </div>
+          )}
+          <div ref={bottom} />
         </div>
 
-        <form onSubmit={(e) => { e.preventDefault(); sendChat(text); setText('') }}
-              className="flex gap-2 border-t border-slate-200 bg-white p-3">
-          <input value={text} onChange={(e) => setText(e.target.value)} placeholder={`Message as ${user?.name ?? ''}…`}
-                 className="flex-1 rounded border border-slate-300 px-3 py-2 text-sm outline-none focus:border-teal" />
-          <button className="rounded bg-navy px-4 text-sm font-semibold text-white">Send</button>
-        </form>
+        <ChatInput />
       </div>
 
       <aside className="w-72 shrink-0 overflow-y-auto border-l border-slate-200 bg-white p-4 text-sm">
@@ -84,14 +81,55 @@ export default function IncidentRoom() {
                     className="rounded bg-red-50 px-1.5 py-0.5 text-xs text-tier-critical hover:bg-red-100">{id}</button>
           ))}
         </div>
-        <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Members ({room.members.length})</div>
-        {room.members.map((m) => (
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">Members ({members.all.length})</span>
+          <InviteButton />
+        </div>
+        {members.all.map((m) => (
           <div key={m.employee_id} className="mb-2">
-            <div className="font-medium text-navy">{m.name}{m.employee_id === user?.employee_id && ' (you)'}</div>
+            <div className="font-medium text-navy">
+              {m.name}{m.employee_id === user?.employee_id && ' (you)'}
+              {members.invited.includes(m) && <span className="ml-1 rounded bg-slate-100 px-1 text-[10px] font-normal text-slate-500">invited</span>}
+            </div>
             <div className="text-xs text-slate-500">{m.title} · {m.phone}</div>
           </div>
         ))}
+        <div className="mt-3 text-[11px] text-slate-400">Added automatically by the alert rules; tag anyone with @.</div>
       </aside>
+    </div>
+  )
+}
+
+// Invite someone who isn't in the room yet: searchable list of staff
+function InviteButton() {
+  const { people, invite } = useStore()
+  const { all } = useRoomMembers()
+  const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const q = query.toLowerCase()
+  const candidates = people
+    .filter((p) => !all.some((m) => m.employee_id === p.employee_id))
+    .filter((p) => !q || `${p.name} ${p.title} ${p.team}`.toLowerCase().includes(q))
+
+  return (
+    <div className="relative">
+      <button onClick={() => setOpen(!open)} className="rounded bg-navy px-2 py-0.5 text-xs font-semibold text-white">+ Invite</button>
+      {open && (
+        <div className="absolute right-0 top-full z-30 mt-1 w-72 rounded-lg border border-slate-200 bg-white shadow-xl">
+          <input autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search name, role or team…"
+                 className="w-full border-b border-slate-100 px-3 py-2 text-sm outline-none" />
+          <div className="max-h-72 overflow-y-auto">
+            {candidates.length === 0 && <div className="px-3 py-2 text-xs text-slate-400">Everyone matching is already in the room.</div>}
+            {candidates.map((p) => (
+              <button key={p.employee_id} onClick={() => { invite(p); setOpen(false); setQuery('') }}
+                      className="block w-full px-3 py-2 text-left hover:bg-teal/10">
+                <div className="text-sm font-medium text-navy">{p.name}</div>
+                <div className="text-[11px] text-slate-500">{p.title} · {p.team}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

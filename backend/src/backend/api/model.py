@@ -1,9 +1,8 @@
 """Response shapes for the API (what the frontend receives)."""
 from datetime import datetime
-
 from pydantic import BaseModel
-
 from backend.ETL.model import Alert, IncidentRoom, Location, RiskResult
+from typing import Optional
 
 
 class AssetSummary(BaseModel):
@@ -65,3 +64,25 @@ class AlertsResponse(BaseModel):
     mode: str                          # standard | ml: which score drove the alerts
     alerts: list[Alert]                # oldest first
     room: IncidentRoom | None          # None until an asset first reaches Critical
+
+
+# ---------------------------------------------------------------------------
+# AI requests (incident room commands)
+# ---------------------------------------------------------------------------
+class AskRequest(BaseModel):
+    """Plain message in the incident room."""
+    advisory: int
+    question: str
+    conversation:Optional[list[str]] #In the future might send over the prevous conversation for context
+
+
+class ReportRequest(BaseModel):
+    """/generate_report [asset]: situation briefing; asset defaults to the room's trigger asset."""
+    advisory: int
+    asset_id: str | None = None
+
+
+class PlaybookRequest(BaseModel):
+    """/playbook [asset] question: what the playbooks say for one asset."""
+    asset_id: str
+    question: str

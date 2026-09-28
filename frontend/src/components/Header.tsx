@@ -1,11 +1,14 @@
-import { formatTime, TIER_COLOR, useCurrent, useStore } from '../store'
+import { useNavigate } from 'react-router'
+import { tierColor } from '../colors'
+import { formatTime, useCurrent, useStore } from '../store'
 import type { Tier } from '../types'
 
 const TIERS: Tier[] = ['Critical', 'High', 'Medium', 'Low']
 
 // Top bar: storm status at the current replay time, tier counts for both scores, logged-in user
 export default function Header() {
-  const { user, people, setUser } = useStore()
+  const { user, people, setUser, logout } = useStore()
+  const navigate = useNavigate()
   const { advisory, risk } = useCurrent()
 
   return (
@@ -29,7 +32,7 @@ export default function Header() {
               <span className="w-9 text-white/60">{m === 'standard' ? 'Rules' : 'ML'}</span>
               {TIERS.map((t) => (
                 <span key={t} className="flex items-center gap-1">
-                  <span className="h-2 w-2 rounded-full" style={{ background: TIER_COLOR[t] }} />
+                  <span className="h-2 w-2 rounded-full" style={{ background: tierColor(t) }} />
                   {risk.tiers[m][t]} {t}
                 </span>
               ))}
@@ -52,6 +55,8 @@ export default function Header() {
             </select>
           </label>
         )}
+        <button onClick={() => { logout(); navigate('/login') }}
+                className="rounded border border-white/20 px-2.5 py-1 text-xs text-white/80 hover:bg-white/10">Sign out</button>
       </div>
     </header>
   )

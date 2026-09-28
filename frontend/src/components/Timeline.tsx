@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { TIER_COLOR, useStore } from '../store'
+import { palette, tierColor } from '../colors'
+import { useStore } from '../store'
 
 const STEP_MS = 1500 // how long each advisory stays on screen while playing
 
@@ -24,9 +25,9 @@ export default function Timeline() {
   const pct = (i: number) => `${(i / (advisories.length - 1)) * 100}%`
 
   const markers = [
-    { i: firstAlert, label: 'First alerts', color: TIER_COLOR.High },
-    { i: roomOpens, label: 'Room opens', color: TIER_COLOR.Critical },
-    { i: peak, label: 'Peak', color: '#0f2b46' },
+    { i: firstAlert, label: 'First alerts', color: tierColor('High') },
+    { i: roomOpens, label: 'Room opens', color: tierColor('Critical') },
+    { i: peak, label: 'Peak', color: palette().navy },
   ].filter((m) => m.i >= 0)
 
   return (
@@ -56,7 +57,7 @@ export default function Timeline() {
             {/* how many assets are at risk at this advisory */}
             <span className="ml-2 h-1.5 rounded-r" style={{
               width: `${(load[i] / maxLoad) * 40}px`,
-              background: counts[i].Critical ? TIER_COLOR.Critical : TIER_COLOR.High,
+              background: counts[i].Critical ? tierColor('Critical') : tierColor('High'),
               opacity: load[i] ? 0.8 : 0 }} />
           </button>
         ))}

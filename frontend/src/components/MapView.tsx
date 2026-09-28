@@ -1,12 +1,28 @@
 import type { Feature, FeatureCollection, LineString } from 'geojson'
 import { type GeoJSONSource, Map as MapLibreMap, type MapLayerMouseEvent, NavigationControl } from 'maplibre-gl'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { TIER_COLOR, useCurrent, useStore } from '../store'
+import { palette, tierColor } from '../colors'
+import { useCurrent, useStore } from '../store'
 
 const BASEMAP = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json' // free, no API key
 const SERVICE_AREA: [[number, number], [number, number]] = [[-83.3, 26.1], [-81.3, 28.4]]
 const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] }
 const DOWN = ['out', 'major_damage'] // field statuses that mean the asset is down
+
+// A small arrowhead pointing right (east); MapLibre rotates it to follow each line's direction
+function arrowImage() {
+  const size = 28
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  ctx.fillStyle = palette().navy
+  ctx.strokeStyle = palette().surface
+  ctx.lineWidth = 2.5
+  ctx.beginPath()
+  ctx.moveTo(6, 5); ctx.lineTo(24, 14); ctx.lineTo(6, 23); ctx.closePath()
+  ctx.stroke(); ctx.fill()
+  return ctx.getImageData(0, 0, size, size)
+}
 
 // 2D map: storm (cone, track, wind zones) under the assets.
 // Each asset: fill = rules tier; a coloured ring = ML tier, shown only where ML disagrees; a dark halo marks assets
@@ -25,53 +41,56 @@ export default function MapView() {
                                   canvasContextAttributes: { preserveDrawingBuffer: true } }) // lets screenshots capture the map
     map.addControl(new NavigationControl({ showCompass: false }), 'top-right')
     map.on('load', () => {
+      const c = palette()
       for (const id of ['storm', 'centre', 'deps', 'asset-points', 'asset-lines']) map.addSource(id, { type: 'geojson', data: EMPTY })
 
       // storm, drawn under the assets
       map.addLayer({ id: 'cone', type: 'fill', source: 'storm', filter: ['==', ['get', 'layer'], 'cone'],
-                     paint: { 'fill-color': '#64748b', 'fill-opacity': 0.12 } })
+                     paint: { 'fill-color': c.muted, 'fill-opacity': 0.12 } })
       map.addLayer({ id: 'wind-now', type: 'fill', source: 'storm',
                      filter: ['all', ['==', ['get', 'layer'], 'wind_radii'], ['==', ['get', 'kind'], 'current']],
-                     paint: { 'fill-color': ['match', ['get', 'threshold_kt'], 64, '#dc2626', 50, '#f97316', '#eab308'],
+                     paint: { 'fill-color': ['match', ['get', 'threshold_kt'], 64, c['wind-64'], 50, c['wind-50'], c['wind-34']],
                               'fill-opacity': 0.18 } })
       map.addLayer({ id: 'wind-forecast', type: 'line', source: 'storm',
                      filter: ['all', ['==', ['get', 'layer'], 'wind_radii'], ['==', ['get', 'kind'], 'forecast'],
                               ['<=', ['get', 'tau_hours'], 36]],
-                     paint: { 'line-color': ['match', ['get', 'threshold_kt'], 64, '#dc2626', 50, '#f97316', '#eab308'],
+                     paint: { 'line-color': ['match', ['get', 'threshold_kt'], 64, c['wind-64'], 50, c['wind-50'], c['wind-34']],
                               'line-width': 1, 'line-dasharray': [3, 3], 'line-opacity': 0.7 } })
       map.addLayer({ id: 'track', type: 'line', source: 'storm', filter: ['==', ['get', 'layer'], 'track'],
-                     paint: { 'line-color': '#0f2b46', 'line-width': 2, 'line-dasharray': [2, 2] } })
+                     paint: { 'line-color': c.navy, 'line-width': 2, 'line-dasharray': [2, 2] } })
       map.addLayer({ id: 'forecast-points', type: 'circle', source: 'storm',
                      filter: ['==', ['get', 'layer'], 'forecast_point'],
-                     paint: { 'circle-radius': 3, 'circle-color': '#0f2b46' } })
+                     paint: { 'circle-radius': 3, 'circle-color': c.navy } })
       map.addLayer({ id: 'centre', type: 'circle', source: 'centre',
-                     paint: { 'circle-radius': 9, 'circle-color': '#0f2b46', 'circle-stroke-color': '#fff',
+                     paint: { 'circle-radius': 9, 'circle-color': c.navy, 'circle-stroke-color': c.surface,
                               'circle-stroke-width': 3 } })
 
-      // dependencies of the selected asset (dotted), drawn under the assets
+      // dependencies of the selected asset: dotted lines with an arrow from supplier to dependent, under the assets
+      map.addImage('dep-arrow', arrowImage(), { pixelRatio: 2 })
       map.addLayer({ id: 'deps', type: 'line', source: 'deps', layout: { 'line-cap': 'round' },
-                     paint: { 'line-color': ['match', ['get', 'kind'], 'up', '#0f2b46', 'down', '#ea580c', '#ea580c'],
-                              'line-width': ['match', ['get', 'kind'], 'indirect', 2, 3.5],
-                              'line-opacity': ['match', ['get', 'kind'], 'indirect', 0.45, 0.95],
+                     paint: { 'line-color': c.navy, 'line-width': 2.5, 'line-opacity': 0.85,
                               'line-dasharray': [0.5, 2] } })
+      map.addLayer({ id: 'deps-arrows', type: 'symbol', source: 'deps',
+                     layout: { 'symbol-placement': 'line-center', 'icon-image': 'dep-arrow', 'icon-size': 0.9,
+                               'icon-rotation-alignment': 'map', 'icon-allow-overlap': true } })
 
       // assets
       map.addLayer({ id: 'asset-lines', type: 'line', source: 'asset-lines',
                      paint: { 'line-color': ['get', 'color'], 'line-width': ['case', ['get', 'selected'], 5, 2],
                               'line-opacity': 0.85 } })
       map.addLayer({ id: 'asset-selected', type: 'circle', source: 'asset-points', filter: ['get', 'selected'],
-                     paint: { 'circle-radius': 16, 'circle-color': '#0f2b46', 'circle-opacity': 0.25 } })
+                     paint: { 'circle-radius': 16, 'circle-color': c.navy, 'circle-opacity': 0.25 } })
       map.addLayer({ id: 'asset-down', type: 'circle', source: 'asset-points', filter: ['get', 'down'],
-                     paint: { 'circle-radius': 13, 'circle-color': 'transparent', 'circle-stroke-color': '#111827',
+                     paint: { 'circle-radius': 13, 'circle-color': 'transparent', 'circle-stroke-color': c.ink,
                               'circle-stroke-width': 2.5 } })
       map.addLayer({ id: 'asset-points', type: 'circle', source: 'asset-points',
                      paint: { 'circle-radius': ['case', ['get', 'disagree'], 6, 5.5], 'circle-color': ['get', 'color'],
                               // white edge normally; ML tier colour as a ring only when ML disagrees with the rules
-                              'circle-stroke-color': ['case', ['get', 'disagree'], ['get', 'mlColor'], '#ffffff'],
+                              'circle-stroke-color': ['case', ['get', 'disagree'], ['get', 'mlColor'], c.surface],
                               'circle-stroke-width': ['case', ['get', 'disagree'], 3, 1.5] } })
       map.addLayer({ id: 'asset-labels', type: 'symbol', source: 'asset-points', minzoom: 8.5,
                      layout: { 'text-field': ['get', 'asset_id'], 'text-size': 10, 'text-offset': [0, 1.4] },
-                     paint: { 'text-color': '#334155', 'text-halo-color': '#fff', 'text-halo-width': 1 } })
+                     paint: { 'text-color': c.label, 'text-halo-color': c.surface, 'text-halo-width': 1 } })
 
       for (const layer of ['asset-points', 'asset-lines']) {
         map.on('click', layer, (e: MapLayerMouseEvent) => select(String(e.features?.[0]?.properties?.asset_id)))
@@ -89,8 +108,8 @@ export default function MapView() {
     const byId = Object.fromEntries((risk?.results ?? []).map((r) => [r.asset_id, r]))
     const features = assets.map((a): Feature => {
       const r = byId[a.asset_id]
-      const properties = { asset_id: a.asset_id, color: TIER_COLOR[r?.standard.tier ?? 'Low'],
-                           mlColor: TIER_COLOR[r?.ml.tier ?? 'Low'], disagree: !!r && r.ml.tier !== r.standard.tier,
+      const properties = { asset_id: a.asset_id, color: tierColor(r?.standard.tier ?? 'Low'),
+                           mlColor: tierColor(r?.ml.tier ?? 'Low'), disagree: !!r && r.ml.tier !== r.standard.tier,
                            selected: a.asset_id === selectedId,
                            down: DOWN.includes(r?.field_status ?? '') }
       return a.path
@@ -178,14 +197,15 @@ function Legend() {
       </div>
       {(['Critical', 'High', 'Medium', 'Low'] as const).map((t) => (
         <div key={t} className="flex items-center gap-2">
-          <span className="h-3 w-3 rounded-full" style={{ background: TIER_COLOR[t] }} />{t}
+          <span className="h-3 w-3 rounded-full" style={{ background: tierColor(t) }} />{t}
         </div>
       ))}
       <div className="flex items-center gap-2"><span className="h-3 w-3 rounded-full border-2 border-slate-900" />Reported down</div>
       <div className="pt-1 font-semibold text-navy">Selected asset</div>
-      <div className="flex items-center gap-2"><span className="h-0 w-5 border-t-2 border-dotted border-navy" />Depends on</div>
-      <div className="flex items-center gap-2"><span className="h-0 w-5 border-t-2 border-dotted border-orange-600" />Supplies</div>
-      <div className="flex items-center gap-2"><span className="h-0 w-5 border-t-2 border-dotted border-orange-600/40" />Knock-on (further down)</div>
+      <div className="flex items-center gap-2">
+        <span className="flex items-center"><span className="h-0 w-4 border-t-2 border-dotted border-navy" /><span className="text-[9px] text-navy">▶</span></span>
+        Dependency (supplier → dependent)
+      </div>
       <div className="pt-1 font-semibold text-navy">Wind zone</div>
       <div className="flex items-center gap-2"><span className="h-3 w-5 bg-red-600/30" />Now (34 / 50 / 64 kt)</div>
       <div className="flex items-center gap-2"><span className="h-0 w-5 border-t-2 border-dashed border-red-600" />Forecast ≤ 36 h</div>

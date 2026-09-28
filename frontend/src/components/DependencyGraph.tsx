@@ -1,8 +1,10 @@
-import { TIER_COLOR, useCurrent, useStore } from '../store'
+import { palette, tierColor } from '../colors'
+import { useCurrent, useStore } from '../store'
 import type { AssetSummary, Tier } from '../types'
 
 // Schematic dependency diagram for the asset panel, left to right:
-//   Depends on  ->  this asset  ->  Supplies  ->  Knock-on (everything further down, linked from the branch it comes through)
+//   Depends on  ->  this asset  ->  Directly affected (depend on it)  ->  Indirectly affected (depend on those, and so on;
+//   each linked from the branch it comes through). Arrows point from supplier to dependent.
 // Node colour = rules tier now. Click a node to select that asset.
 
 const COL_X = [0, 114, 228, 342]
@@ -24,6 +26,7 @@ export default function DependencyGraph({ assetId }: { assetId: string }) {
   const byId: Record<string, AssetSummary> = Object.fromEntries(assets.map((a) => [a.asset_id, a]))
   const tierOf: Record<string, Tier> = Object.fromEntries((risk?.results ?? []).map((r) => [r.asset_id, r.standard.tier]))
   const sel = byId[assetId]
+  const c = palette()
   if (!sel) return null
 
   // knock-on: every asset further downstream, remembered with the direct branch it is reached through
@@ -57,11 +60,11 @@ export default function DependencyGraph({ assetId }: { assetId: string }) {
     ...shown.map((k) => ({ from: pos[`2:${via[k]}`], to: pos[`3:${k}`], kind: 'indirect' as const })),
   ].filter((e) => e.from && e.to)
 
-  const headers = ['Depends on', 'This asset', 'Supplies', 'Knock-on']
+  const headers = ['Depends on', 'This asset', 'Directly affected', 'Indirectly affected']
 
   return (
     <div>
-      <div className="mb-1 grid grid-cols-4 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+      <div className="mb-1 grid grid-cols-4 gap-x-3 text-[10px] font-semibold uppercase leading-tight tracking-wide text-slate-400">
         {headers.map((h) => <span key={h}>{h}</span>)}
       </div>
       <svg viewBox={`0 0 ${COL_X[3] + NODE_W} ${height}`} className="w-full" style={{ height }}>
@@ -71,39 +74,36 @@ export default function DependencyGraph({ assetId }: { assetId: string }) {
           const mid = (x1 + x2) / 2
           return (
             <path key={i} d={`M${x1},${y1} C${mid},${y1} ${mid},${y2} ${x2 - 4},${y2}`} fill="none"
-                  stroke={e.kind === 'up' ? '#0f2b46' : '#ea580c'} strokeOpacity={e.kind === 'indirect' ? 0.45 : 0.9}
-                  strokeWidth={e.kind === 'indirect' ? 1.5 : 2} strokeDasharray="2 3" strokeLinecap="round"
-                  markerEnd={`url(#arrow-${e.kind === 'up' ? 'up' : 'down'})`} />
+                  stroke={c.navy} strokeOpacity={0.8} strokeWidth={1.5} strokeDasharray="2 3" strokeLinecap="round"
+                  markerEnd="url(#dep-arrow)" />
           )
         })}
         <defs>
-          {[['up', '#0f2b46'], ['down', '#ea580c']].map(([id, color]) => (
-            <marker key={id} id={`arrow-${id}`} viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
-              <path d="M0,0 L6,3 L0,6 z" fill={color} />
-            </marker>
-          ))}
+          <marker id="dep-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L6,3 L0,6 z" fill={c.navy} />
+          </marker>
         </defs>
 
         {nodes.map((n) => {
           const a = byId[n.id]
           const isSel = n.id === assetId
-          const color = TIER_COLOR[tierOf[n.id] ?? 'Low']
+          const color = tierColor(tierOf[n.id] ?? 'Low')
           return (
             <g key={`${n.col}:${n.id}`} transform={`translate(${COL_X[n.col]},${y(n)})`}
                onClick={() => !isSel && select(n.id)} className={isSel ? '' : 'cursor-pointer'}>
               <title>{`${n.id} · ${a?.name} (${tierOf[n.id] ?? 'Low'})`}</title>
-              <rect width={NODE_W} height={NODE_H} rx="6" fill={isSel ? '#0f2b46' : '#ffffff'}
-                    stroke={isSel ? '#0f2b46' : '#cbd5e1'} />
+              <rect width={NODE_W} height={NODE_H} rx="6" fill={isSel ? c.navy : c.surface}
+                    stroke={isSel ? c.navy : c.border} />
               <rect width="5" height={NODE_H} rx="2" fill={color} />
-              <text x="11" y="15" fontSize="10.5" fontWeight="700" fill={isSel ? '#ffffff' : '#0f2b46'}>{n.id}</text>
-              <text x="11" y="28" fontSize="9" fill={isSel ? '#cbd5e1' : '#64748b'}>
+              <text x="11" y="15" fontSize="10.5" fontWeight="700" fill={isSel ? c.surface : c.navy}>{n.id}</text>
+              <text x="11" y="28" fontSize="9" fill={isSel ? c.border : c.muted}>
                 {short(a?.name ?? '', a?.type)}
               </text>
             </g>
           )
         })}
         {hidden > 0 && (
-          <text x={COL_X[3] + 4} y={height - 14} fontSize="10" fill="#64748b">+{hidden} more</text>
+          <text x={COL_X[3] + 4} y={height - 14} fontSize="10" fill={c.muted}>+{hidden} more</text>
         )}
       </svg>
     </div>

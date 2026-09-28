@@ -12,14 +12,14 @@ and the Emergency Manager on duty at the time.
 from functools import lru_cache
 
 from backend.ETL.extraction import load_advisory, load_advisory_index, load_processed_assets, on_call
-from backend.ETL.model import AggregatedData, Alert, IncidentRoom, Owner, RiskResult
+from backend.ETL.model import AggregatedData, Alert, IncidentRoom, Owner, RiskResult, Mode
 from backend.ETL.risk_score import ml_risk_score, standard_risk_score
 
 ALERT_TIERS = {"High": 1, "Critical": 2}   # tiers that trigger an action, ranked
 
 
 @lru_cache
-def scores_for(advisory: int, mode: str) -> dict[str, RiskResult]:
+def scores_for(advisory: int, mode: Mode) -> dict[str, RiskResult]:
     """Scores for one advisory and mode, computed once then cached (used by /risks and the alert rules)."""
     assets, adv = load_processed_assets(), load_advisory(advisory)
     return (ml_risk_score if mode == "ml" else standard_risk_score)(assets, adv)

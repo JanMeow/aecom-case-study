@@ -7,7 +7,7 @@ RiskResult       one asset's score from risk_score, with every step of the worki
 Alert, IncidentRoom  what the alert rules did (ETL/alerts.py)
 """
 from datetime import date, datetime
-
+from typing import Literal
 from pydantic import BaseModel, Field
 
 
@@ -129,13 +129,13 @@ class Consequence(BaseModel):
     customers: int                          # own + everything downstream
     facilities: list[str] = Field(default_factory=list)   # critical facility IDs affected
 
-
+type Mode = Literal["ml", "rules"]
 # ---------------------------------------------------------------------------
 # Risk scoring output (risk_score.py)
 # ---------------------------------------------------------------------------
 class RiskResult(BaseModel):
     asset_id: str
-    mode: str = "rules"                     # rules | ml: how own_chance was worked out
+    mode: Mode = "rules"  # rules | ml: how own_chance was worked out
     score: float                            # likelihood x consequence factor
     tier: str                               # Low | Medium | High | Critical
     # likelihood: how likely the asset is to fail
