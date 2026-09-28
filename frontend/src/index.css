@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* The one place colours are defined. Tailwind classes use them (bg-navy, text-muted, bg-tier-critical ...)
+   and TypeScript reads the same variables through src/colors.ts (map layers, SVG, inline styles).
+   "static" makes Tailwind output every variable even if no class uses it, so the code can always read it. */
+@theme static {
+  /* brand */
+  --color-navy: #0f2b46;
+  --color-teal: #0e7c7b;
+
+  /* risk tiers */
+  --color-tier-low: #3a9d6e;
+  --color-tier-medium: #eab308;
+  --color-tier-high: #f97316;
+  --color-tier-critical: #dc2626;
+
+  /* storm wind zones (knots) */
+  --color-wind-34: #eab308;
+  --color-wind-50: #f97316;
+  --color-wind-64: #dc2626;
+
+  /* neutrals */
+  --color-surface: #ffffff;   /* cards, node boxes, marker edges */
+  --color-border: #cbd5e1;    /* outlines */
+  --color-muted: #64748b;     /* secondary text, forecast cone */
+  --color-label: #334155;     /* map labels */
+  --color-ink: #111827;       /* "reported down" halo */
+}
+
+html, body, #root { height: 100%; }
+body { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+
+@keyframes slidein {
+  from { transform: translateX(110%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

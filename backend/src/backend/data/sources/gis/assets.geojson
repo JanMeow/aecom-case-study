@@ -1,0 +1,1580 @@
+{
+ "type": "FeatureCollection",
+ "name": "sgw_assets",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "metadata": {
+  "exported_at": "2022-09-25T06:00:00Z",
+  "system": "SGW Enterprise GIS",
+  "refresh": "daily"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4,
+     27.792
+    ]
+   },
+   "properties": {
+    "asset_id": "GEN-001",
+    "name": "Hillsborough Bay Energy Center",
+    "asset_type": "generation",
+    "region": "North",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1985,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 24,
+    "capacity_mw": 1200
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.345,
+     27.604
+    ]
+   },
+   "properties": {
+    "asset_id": "GEN-002",
+    "name": "Manatee Energy Center",
+    "asset_type": "generation",
+    "region": "Central",
+    "elevation_m": 16.0,
+    "flood_zone": "X",
+    "install_year": 2002,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 22,
+    "capacity_mw": 900
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.935,
+     26.955
+    ]
+   },
+   "properties": {
+    "asset_id": "GEN-003",
+    "name": "Charlotte Harbor Combined Cycle",
+    "asset_type": "generation",
+    "region": "South",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 2009,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 28,
+    "capacity_mw": 650
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.42,
+     27.99
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-001",
+    "name": "Tampa Bulk",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 12.0,
+    "flood_zone": "X",
+    "install_year": 1978,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 19,
+    "voltage_kv": 230
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.458,
+     27.947
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-002",
+    "name": "Downtown Tampa",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 4.0,
+    "flood_zone": "AE",
+    "install_year": 1972,
+    "customers_served": 41000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 17,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.522,
+     27.952
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-003",
+    "name": "Westshore",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1988,
+    "customers_served": 36000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 25,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.29,
+     27.94
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-004",
+    "name": "Brandon",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 18.0,
+    "flood_zone": "X",
+    "install_year": 1995,
+    "customers_served": 52000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 40,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4,
+     27.77
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-005",
+    "name": "Apollo Beach",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 2004,
+    "customers_served": 18000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 15,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.72,
+     27.88
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-006",
+    "name": "Pinellas Bulk",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1981,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 29,
+    "voltage_kv": 230
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.64,
+     27.772
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-007",
+    "name": "St. Petersburg Downtown",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1969,
+    "customers_served": 39000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 6,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.79,
+     27.965
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-008",
+    "name": "Clearwater",
+    "asset_type": "substation",
+    "region": "North",
+    "elevation_m": 8.0,
+    "flood_zone": "X",
+    "install_year": 1990,
+    "customers_served": 33000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 6,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.4,
+     27.58
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-009",
+    "name": "Manatee Bulk",
+    "asset_type": "substation",
+    "region": "Central",
+    "elevation_m": 14.0,
+    "flood_zone": "X",
+    "install_year": 1983,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 17,
+    "voltage_kv": 230
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.57,
+     27.49
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-010",
+    "name": "Bradenton",
+    "asset_type": "substation",
+    "region": "Central",
+    "elevation_m": 5.0,
+    "flood_zone": "X",
+    "install_year": 1986,
+    "customers_served": 34000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 11,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.53,
+     27.33
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-011",
+    "name": "Sarasota",
+    "asset_type": "substation",
+    "region": "Central",
+    "elevation_m": 4.0,
+    "flood_zone": "AE",
+    "install_year": 1979,
+    "customers_served": 38000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 23,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.44,
+     27.1
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-012",
+    "name": "Venice",
+    "asset_type": "substation",
+    "region": "Central",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1993,
+    "customers_served": 24000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 45,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.09,
+     26.98
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-013",
+    "name": "Port Charlotte",
+    "asset_type": "substation",
+    "region": "South",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1987,
+    "customers_served": 31000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 25,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.87,
+     26.58
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-014",
+    "name": "Fort Myers South",
+    "asset_type": "substation",
+    "region": "South",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1974,
+    "customers_served": 44000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 20,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.97,
+     26.6
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-015",
+    "name": "Cape Coral",
+    "asset_type": "substation",
+    "region": "South",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1998,
+    "customers_served": 47000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 25,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.75,
+     26.7
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-016",
+    "name": "Lee Bulk",
+    "asset_type": "substation",
+    "region": "South",
+    "elevation_m": 9.0,
+    "flood_zone": "X",
+    "install_year": 1984,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 35,
+    "voltage_kv": 230
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.94,
+     26.46
+    ]
+   },
+   "properties": {
+    "asset_id": "SUB-017",
+    "name": "Fort Myers Beach",
+    "asset_type": "substation",
+    "region": "South",
+    "elevation_m": 1.0,
+    "flood_zone": "VE",
+    "install_year": 1982,
+    "customers_served": 9000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 13,
+    "voltage_kv": 69
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.37,
+     27.99
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-001",
+    "name": "Tampa Bay Regional WTP",
+    "asset_type": "water_treatment",
+    "region": "North",
+    "elevation_m": 10.0,
+    "flood_zone": "X",
+    "install_year": 1980,
+    "customers_served": 180000,
+    "has_backup_power": true,
+    "backup_hours": 72,
+    "tree_canopy_pct": 28,
+    "capacity_mgd": 120
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.85,
+     26.62
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-002",
+    "name": "Fort Myers WTP",
+    "asset_type": "water_treatment",
+    "region": "South",
+    "elevation_m": 4.0,
+    "flood_zone": "AE",
+    "install_year": 1976,
+    "customers_served": 62000,
+    "has_backup_power": true,
+    "backup_hours": 48,
+    "tree_canopy_pct": 13,
+    "capacity_mgd": 24
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.72,
+     27.95
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-003",
+    "name": "Pinellas WTP",
+    "asset_type": "water_treatment",
+    "region": "North",
+    "elevation_m": 9.0,
+    "flood_zone": "X",
+    "install_year": 1985,
+    "customers_served": 140000,
+    "has_backup_power": true,
+    "backup_hours": 72,
+    "tree_canopy_pct": 18,
+    "capacity_mgd": 80
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.42,
+     27.52
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-004",
+    "name": "Manatee WTP",
+    "asset_type": "water_treatment",
+    "region": "Central",
+    "elevation_m": 12.0,
+    "flood_zone": "X",
+    "install_year": 1992,
+    "customers_served": 95000,
+    "has_backup_power": true,
+    "backup_hours": 48,
+    "tree_canopy_pct": 17,
+    "capacity_mgd": 54
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.99,
+     26.64
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-005",
+    "name": "Cape Coral WTP",
+    "asset_type": "water_treatment",
+    "region": "South",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 2001,
+    "customers_served": 70000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 9,
+    "capacity_mgd": 28
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.99,
+     27.03
+    ]
+   },
+   "properties": {
+    "asset_id": "WTP-006",
+    "name": "Peace River WTP",
+    "asset_type": "water_treatment",
+    "region": "South",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1995,
+    "customers_served": 58000,
+    "has_backup_power": true,
+    "backup_hours": 48,
+    "tree_canopy_pct": 7,
+    "capacity_mgd": 36
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.43,
+     27.925
+    ]
+   },
+   "properties": {
+    "asset_id": "WWTP-001",
+    "name": "Tampa Bay AWT",
+    "asset_type": "wastewater_treatment",
+    "region": "North",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1978,
+    "customers_served": 150000,
+    "has_backup_power": true,
+    "backup_hours": 48,
+    "tree_canopy_pct": 8,
+    "capacity_mgd": 96
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.7,
+     27.73
+    ]
+   },
+   "properties": {
+    "asset_id": "WWTP-002",
+    "name": "St. Petersburg Southwest WRF",
+    "asset_type": "wastewater_treatment",
+    "region": "North",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1983,
+    "customers_served": 90000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 10,
+    "capacity_mgd": 20
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.89,
+     26.56
+    ]
+   },
+   "properties": {
+    "asset_id": "WWTP-003",
+    "name": "Fort Myers South WRF",
+    "asset_type": "wastewater_treatment",
+    "region": "South",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1980,
+    "customers_served": 60000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 30,
+    "capacity_mgd": 15
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.5,
+     27.35
+    ]
+   },
+   "properties": {
+    "asset_id": "WWTP-004",
+    "name": "Sarasota WRF",
+    "asset_type": "wastewater_treatment",
+    "region": "Central",
+    "elevation_m": 4.0,
+    "flood_zone": "AE",
+    "install_year": 1988,
+    "customers_served": 55000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 24,
+    "capacity_mgd": 18
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.03,
+     26.92
+    ]
+   },
+   "properties": {
+    "asset_id": "WWTP-005",
+    "name": "Punta Gorda WRF",
+    "asset_type": "wastewater_treatment",
+    "region": "South",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1991,
+    "customers_served": 30000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 17,
+    "capacity_mgd": 4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.46,
+     28.03
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-001",
+    "name": "Tampa North Booster",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 14.0,
+    "flood_zone": "X",
+    "install_year": 1990,
+    "customers_served": 38000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 19,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.455,
+     27.93
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-002",
+    "name": "Davis Islands Lift",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 1.0,
+    "flood_zone": "VE",
+    "install_year": 1975,
+    "customers_served": 9000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 21,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.53,
+     27.94
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-003",
+    "name": "Westshore Lift",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1989,
+    "customers_served": 14000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 22,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.3,
+     27.93
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-004",
+    "name": "Brandon Booster",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 17.0,
+    "flood_zone": "X",
+    "install_year": 1999,
+    "customers_served": 41000,
+    "has_backup_power": true,
+    "backup_hours": 24,
+    "tree_canopy_pct": 5,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.41,
+     27.765
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-005",
+    "name": "Apollo Beach Lift",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 1.0,
+    "flood_zone": "AE",
+    "install_year": 2006,
+    "customers_served": 7000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 8,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.66,
+     27.79
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-006",
+    "name": "St. Petersburg Booster",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1984,
+    "customers_served": 36000,
+    "has_backup_power": true,
+    "backup_hours": 12,
+    "tree_canopy_pct": 22,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.86,
+     26.57
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-007",
+    "name": "Fort Myers South Booster",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1979,
+    "customers_served": 28000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 29,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.8,
+     27.96
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-008",
+    "name": "Clearwater Lift",
+    "asset_type": "pumping_station",
+    "region": "North",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1992,
+    "customers_served": 12000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 25,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.56,
+     27.49
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-009",
+    "name": "Bradenton Booster",
+    "asset_type": "pumping_station",
+    "region": "Central",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1994,
+    "customers_served": 30000,
+    "has_backup_power": true,
+    "backup_hours": 12,
+    "tree_canopy_pct": 14,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.54,
+     27.33
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-010",
+    "name": "Sarasota Lift",
+    "asset_type": "pumping_station",
+    "region": "Central",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1981,
+    "customers_served": 15000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 19,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.44,
+     27.09
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-011",
+    "name": "Venice Booster",
+    "asset_type": "pumping_station",
+    "region": "Central",
+    "elevation_m": 4.0,
+    "flood_zone": "AE",
+    "install_year": 1997,
+    "customers_served": 21000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 28,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.1,
+     26.99
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-012",
+    "name": "Port Charlotte Booster",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 3.0,
+    "flood_zone": "AE",
+    "install_year": 1993,
+    "customers_served": 26000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 13,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.05,
+     26.93
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-013",
+    "name": "Punta Gorda Lift",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 1.0,
+    "flood_zone": "AE",
+    "install_year": 1986,
+    "customers_served": 8000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 29,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.98,
+     26.61
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-014",
+    "name": "Cape Coral Booster",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 2003,
+    "customers_served": 33000,
+    "has_backup_power": true,
+    "backup_hours": 12,
+    "tree_canopy_pct": 8,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.99,
+     26.56
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-015",
+    "name": "Cape Coral South Lift",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 1.0,
+    "flood_zone": "AE",
+    "install_year": 2000,
+    "customers_served": 11000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 14,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.95,
+     26.45
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-016",
+    "name": "Fort Myers Beach Lift",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 1.0,
+    "flood_zone": "VE",
+    "install_year": 1985,
+    "customers_served": 6000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 25,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.87,
+     26.64
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-017",
+    "name": "Fort Myers Downtown Lift",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 2.0,
+    "flood_zone": "AE",
+    "install_year": 1977,
+    "customers_served": 13000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 11,
+    "service": "lift"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.64,
+     26.62
+    ]
+   },
+   "properties": {
+    "asset_id": "PS-018",
+    "name": "Lehigh Acres Booster",
+    "asset_type": "pumping_station",
+    "region": "South",
+    "elevation_m": 8.0,
+    "flood_zone": "X",
+    "install_year": 2021,
+    "customers_served": 22000,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 9,
+    "service": "booster"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.4,
+      27.792
+     ],
+     [
+      -82.3994,
+      27.8225
+     ],
+     [
+      -82.419,
+      27.8799
+     ],
+     [
+      -82.4055,
+      27.9476
+     ],
+     [
+      -82.42,
+      27.99
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-001",
+    "name": "Bay Energy \u2013 Tampa Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "North",
+    "elevation_m": 7.5,
+    "flood_zone": "X",
+    "install_year": 1985,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 10,
+    "voltage_kv": 230,
+    "length_km": 22.1
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.4,
+      27.792
+     ],
+     [
+      -82.4643,
+      27.7975
+     ],
+     [
+      -82.5631,
+      27.8172
+     ],
+     [
+      -82.6513,
+      27.8582
+     ],
+     [
+      -82.72,
+      27.88
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-002",
+    "name": "Bay Energy \u2013 Pinellas Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "North",
+    "elevation_m": 4.5,
+    "flood_zone": "X",
+    "install_year": 1986,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 29,
+    "voltage_kv": 230,
+    "length_km": 33.0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.42,
+      27.99
+     ],
+     [
+      -82.4339,
+      27.8755
+     ],
+     [
+      -82.404,
+      27.7868
+     ],
+     [
+      -82.4162,
+      27.6861
+     ],
+     [
+      -82.4,
+      27.58
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-003",
+    "name": "Tampa Bulk \u2013 Manatee Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "Central",
+    "elevation_m": 13.0,
+    "flood_zone": "X",
+    "install_year": 1983,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 55,
+    "voltage_kv": 230,
+    "length_km": 45.6
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.345,
+      27.604
+     ],
+     [
+      -82.3464,
+      27.5783
+     ],
+     [
+      -82.3603,
+      27.5999
+     ],
+     [
+      -82.3926,
+      27.5722
+     ],
+     [
+      -82.4,
+      27.58
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-004",
+    "name": "Manatee Energy \u2013 Manatee Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "Central",
+    "elevation_m": 15.0,
+    "flood_zone": "X",
+    "install_year": 2002,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 24,
+    "voltage_kv": 230,
+    "length_km": 6.0
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.4,
+      27.58
+     ],
+     [
+      -82.3042,
+      27.4235
+     ],
+     [
+      -82.2613,
+      27.2639
+     ],
+     [
+      -82.1536,
+      27.1341
+     ],
+     [
+      -82.09,
+      26.98
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-005",
+    "name": "Manatee Bulk \u2013 Port Charlotte 230 kV",
+    "asset_type": "transmission_line",
+    "region": "Central",
+    "elevation_m": 8.5,
+    "flood_zone": "X",
+    "install_year": 1987,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 62,
+    "voltage_kv": 230,
+    "length_km": 73.4
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -82.09,
+      26.98
+     ],
+     [
+      -81.9927,
+      26.9192
+     ],
+     [
+      -81.9186,
+      26.8589
+     ],
+     [
+      -81.8399,
+      26.7721
+     ],
+     [
+      -81.75,
+      26.7
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-006",
+    "name": "Port Charlotte \u2013 Lee Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "South",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1988,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 48,
+    "voltage_kv": 230,
+    "length_km": 45.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.935,
+      26.955
+     ],
+     [
+      -81.8756,
+      26.896
+     ],
+     [
+      -81.828,
+      26.8306
+     ],
+     [
+      -81.7881,
+      26.7456
+     ],
+     [
+      -81.75,
+      26.7
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-007",
+    "name": "Charlotte Harbor CC \u2013 Lee Bulk 230 kV",
+    "asset_type": "transmission_line",
+    "region": "South",
+    "elevation_m": 7.5,
+    "flood_zone": "X",
+    "install_year": 2009,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 30,
+    "voltage_kv": 230,
+    "length_km": 33.8
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.75,
+      26.7
+     ],
+     [
+      -81.7909,
+      26.6616
+     ],
+     [
+      -81.8268,
+      26.6293
+     ],
+     [
+      -81.856,
+      26.6011
+     ],
+     [
+      -81.87,
+      26.58
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-008",
+    "name": "Lee Bulk \u2013 Fort Myers South 69 kV",
+    "asset_type": "transmission_line",
+    "region": "South",
+    "elevation_m": 6.0,
+    "flood_zone": "X",
+    "install_year": 1976,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 58,
+    "voltage_kv": 69,
+    "length_km": 17.9
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -81.75,
+      26.7
+     ],
+     [
+      -81.7996,
+      26.6696
+     ],
+     [
+      -81.8652,
+      26.6384
+     ],
+     [
+      -81.9243,
+      26.6425
+     ],
+     [
+      -81.97,
+      26.6
+     ]
+    ]
+   },
+   "properties": {
+    "asset_id": "TL-009",
+    "name": "Lee Bulk \u2013 Cape Coral 69 kV",
+    "asset_type": "transmission_line",
+    "region": "South",
+    "elevation_m": 5.5,
+    "flood_zone": "X",
+    "install_year": 1998,
+    "customers_served": 0,
+    "has_backup_power": false,
+    "backup_hours": 0,
+    "tree_canopy_pct": 6,
+    "voltage_kv": 69,
+    "length_km": 24.5
+   }
+  }
+ ]
+}
