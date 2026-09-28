@@ -1,0 +1,20 @@
+EMPLOYEE_ID,FIRST_NAME,LAST_NAME,JOB_TITLE,DEPARTMENT,TEAM,WORK_LOCATION,EMAIL,WORK_PHONE,MANAGER_ID,EMPLOYMENT_STATUS
+E1001,Maria,Delgado,Emergency Manager,Emergency Management,Emergency Management,Tampa HQ,mdelgado@sgw.example,+1-813-555-0101,E1003,Active
+E1002,Kwame,Asante,Emergency Manager,Emergency Management,Emergency Management,Fort Myers,kasante@sgw.example,+1-813-555-0102,E1001,Active
+E1003,Priya,Raman,VP Operations,Operations,Executive,Tampa HQ,praman@sgw.example,+1-813-555-0103,,Active
+E1004,Tom,Becker,T&D Operations Supervisor,Transmission & Distribution,T&D Ops North,Tampa HQ,tbecker@sgw.example,+1-813-555-0104,E1003,Active
+E1005,Aisha,Khan,Distribution Engineer,Transmission & Distribution,T&D Ops North,Tampa HQ,akhan@sgw.example,+1-813-555-0105,E1004,Active
+E1006,Luis,Ortega,T&D Operations Supervisor,Transmission & Distribution,T&D Ops Central,Bradenton,lortega@sgw.example,+1-813-555-0106,E1003,Active
+E1007,Hannah,Cole,T&D Operations Supervisor,Transmission & Distribution,T&D Ops South,Fort Myers,hcole@sgw.example,+1-813-555-0107,E1003,Active
+E1008,Daniel,Nguyen,Substation Technician,Transmission & Distribution,T&D Ops South,Fort Myers,dnguyen@sgw.example,+1-813-555-0108,E1007,Active
+E1009,Grace,Okafor,Transmission Lead,Transmission & Distribution,Transmission,Tampa HQ,gokafor@sgw.example,+1-813-555-0109,E1003,Active
+E1010,Robert,Hale,Plant Manager,Generation,Generation,Apollo Beach,rhale@sgw.example,+1-813-555-0110,E1003,Active
+E1011,Sofia,Marquez,Water Operations Supervisor,Water Services,Water Ops North,Tampa HQ,smarquez@sgw.example,+1-813-555-0111,E1003,Active
+E1012,James,Whitfield,Water Operations Supervisor,Water Services,Water Ops Central,Bradenton,jwhitfield@sgw.example,+1-813-555-0112,E1003,Active
+E1013,Mei,Chen,Water Operations Supervisor,Water Services,Water Ops South,Fort Myers,mchen@sgw.example,+1-813-555-0113,E1003,Active
+E1014,Carlos,Rivera,Treatment Plant Operator,Water Services,Water Ops South,Fort Myers,crivera@sgw.example,+1-813-555-0114,E1013,Active
+E1015,Olivia,Brooks,Wastewater Manager,Water Services,Wastewater Ops,Tampa HQ,obrooks@sgw.example,+1-813-555-0115,E1003,Active
+E1016,Samuel,Adeyemi,Field Crew Supervisor,Field Operations,Field Crews South,Fort Myers,sadeyemi@sgw.example,+1-813-555-0116,E1007,Active
+E1017,Emily,Park,Field Crew Supervisor,Field Operations,Field Crews North,Tampa HQ,epark@sgw.example,+1-813-555-0117,E1004,Active
+E1018,Nadia,Haddad,Communications Manager,Corporate Communications,Communications,Tampa HQ,nhaddad@sgw.example,+1-813-555-0118,E1003,Active
+E1019,Brian,Walsh,Regulatory Affairs Manager,Regulatory,Regulatory,Tampa HQ,bwalsh@sgw.example,+1-813-555-0119,E1003,Active

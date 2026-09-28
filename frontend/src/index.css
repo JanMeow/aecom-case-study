@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f2b46;
+  --color-teal: #0e7c7b;
+  --color-tier-low: #3a9d6e;
+  --color-tier-medium: #eab308;
+  --color-tier-high: #f97316;
+  --color-tier-critical: #dc2626;
+}
+
+html, body, #root { height: 100%; }
+body { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+
+@keyframes slidein {
+  from { transform: translateX(110%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}

@@ -1,0 +1,3526 @@
+{
+  "assets": [
+    {
+      "asset_id": "GEN-001",
+      "name": "Hillsborough Bay Energy Center",
+      "type": "generation",
+      "region": "North",
+      "location": {
+        "lat": 27.792,
+        "lon": -82.4
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1985,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 24.0,
+      "attributes": {
+        "capacity_mw": 1200
+      },
+      "owner": {
+        "employee_id": "E1010",
+        "name": "Robert Hale",
+        "title": "Plant Manager",
+        "team": "Generation",
+        "email": "rhale@sgw.example",
+        "phone": "+1-813-555-0110"
+      },
+      "upstream": [],
+      "downstream": [
+        "TL-001",
+        "TL-002"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "GEN-002",
+      "name": "Manatee Energy Center",
+      "type": "generation",
+      "region": "Central",
+      "location": {
+        "lat": 27.604,
+        "lon": -82.345
+      },
+      "path": null,
+      "elevation_m": 16.0,
+      "flood_zone": "X",
+      "install_year": 2002,
+      "customers_served": 0,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 22.0,
+      "attributes": {
+        "capacity_mw": 900
+      },
+      "owner": {
+        "employee_id": "E1010",
+        "name": "Robert Hale",
+        "title": "Plant Manager",
+        "team": "Generation",
+        "email": "rhale@sgw.example",
+        "phone": "+1-813-555-0110"
+      },
+      "upstream": [],
+      "downstream": [
+        "TL-004"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "GEN-003",
+      "name": "Charlotte Harbor Combined Cycle",
+      "type": "generation",
+      "region": "South",
+      "location": {
+        "lat": 26.955,
+        "lon": -81.935
+      },
+      "path": null,
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 2009,
+      "customers_served": 0,
+      "condition_rating": 1,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 28.0,
+      "attributes": {
+        "capacity_mw": 650
+      },
+      "owner": {
+        "employee_id": "E1010",
+        "name": "Robert Hale",
+        "title": "Plant Manager",
+        "team": "Generation",
+        "email": "rhale@sgw.example",
+        "phone": "+1-813-555-0110"
+      },
+      "upstream": [],
+      "downstream": [
+        "TL-007"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-001",
+      "name": "Tampa Bulk",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.99,
+        "lon": -82.42
+      },
+      "path": null,
+      "elevation_m": 12.0,
+      "flood_zone": "X",
+      "install_year": 1978,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 19.0,
+      "attributes": {
+        "voltage_kv": 230
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "TL-003",
+        "SUB-002",
+        "SUB-003",
+        "SUB-004",
+        "SUB-005",
+        "WTP-001",
+        "PS-001"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-002",
+      "name": "Downtown Tampa",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.947,
+        "lon": -82.458
+      },
+      "path": null,
+      "elevation_m": 4.0,
+      "flood_zone": "AE",
+      "install_year": 1972,
+      "customers_served": 41000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 17.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "WWTP-001",
+        "PS-002"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-001",
+          "name": "Bayshore Regional Hospital",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-003",
+      "name": "Westshore",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.952,
+        "lon": -82.522
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1988,
+      "customers_served": 36000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 25.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-003"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-002",
+          "name": "Westshore Medical Center",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2020-11-13",
+          "wo_no": "WO-19393",
+          "type": "STORM",
+          "summary": "Tropical Storm Eta 2020: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Tropical Storm Eta 2020",
+          "cost_usd": 221891.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-004",
+      "name": "Brandon",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.94,
+        "lon": -82.29
+      },
+      "path": null,
+      "elevation_m": 18.0,
+      "flood_zone": "X",
+      "install_year": 1995,
+      "customers_served": 52000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 40.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-004"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-003",
+          "name": "Brandon Community Hospital",
+          "kind": "hospital",
+          "via": "power"
+        },
+        {
+          "facility_id": "CF-010",
+          "name": "Tampa Fairgrounds Shelter",
+          "kind": "shelter",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2017-09-13",
+          "wo_no": "WO-19358",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 31219.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-005",
+      "name": "Apollo Beach",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.77,
+        "lon": -82.4
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 2004,
+      "customers_served": 18000,
+      "condition_rating": 2,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 15.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-005"
+      ],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2020-11-13",
+          "wo_no": "WO-19379",
+          "type": "STORM",
+          "summary": "Tropical Storm Eta 2020: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Tropical Storm Eta 2020",
+          "cost_usd": 152035.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-006",
+      "name": "Pinellas Bulk",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.88,
+        "lon": -82.72
+      },
+      "path": null,
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1981,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 29.0,
+      "attributes": {
+        "voltage_kv": 230
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-002",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-007",
+        "SUB-008",
+        "WTP-003"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-013",
+          "name": "Pinellas County EOC",
+          "kind": "emergency_operations",
+          "via": "power"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-007",
+      "name": "St. Petersburg Downtown",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.772,
+        "lon": -82.64
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1969,
+      "customers_served": 39000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 6.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-006",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "WWTP-002",
+        "PS-006"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-004",
+          "name": "Suncoast General Hospital",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2021-07-08",
+          "wo_no": "WO-19400",
+          "type": "STORM",
+          "summary": "Hurricane Elsa 2021: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Elsa 2021",
+          "cost_usd": 101426.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-008",
+      "name": "Clearwater",
+      "type": "substation",
+      "region": "North",
+      "location": {
+        "lat": 27.965,
+        "lon": -82.79
+      },
+      "path": null,
+      "elevation_m": 8.0,
+      "flood_zone": "X",
+      "install_year": 1990,
+      "customers_served": 33000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 6.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1004",
+        "name": "Tom Becker",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops North",
+        "email": "tbecker@sgw.example",
+        "phone": "+1-813-555-0104"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-006",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-008"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-009",
+      "name": "Manatee Bulk",
+      "type": "substation",
+      "region": "Central",
+      "location": {
+        "lat": 27.58,
+        "lon": -82.4
+      },
+      "path": null,
+      "elevation_m": 14.0,
+      "flood_zone": "X",
+      "install_year": 1983,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 17.0,
+      "attributes": {
+        "voltage_kv": 230
+      },
+      "owner": {
+        "employee_id": "E1006",
+        "name": "Luis Ortega",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops Central",
+        "email": "lortega@sgw.example",
+        "phone": "+1-813-555-0106"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-003",
+          "type": "power"
+        },
+        {
+          "asset_id": "TL-004",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "TL-005",
+        "SUB-010",
+        "SUB-011",
+        "SUB-012",
+        "WTP-004"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-010",
+      "name": "Bradenton",
+      "type": "substation",
+      "region": "Central",
+      "location": {
+        "lat": 27.49,
+        "lon": -82.57
+      },
+      "path": null,
+      "elevation_m": 5.0,
+      "flood_zone": "X",
+      "install_year": 1986,
+      "customers_served": 34000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 11.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1006",
+        "name": "Luis Ortega",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops Central",
+        "email": "lortega@sgw.example",
+        "phone": "+1-813-555-0106"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-009"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-005",
+          "name": "Manatee Valley Hospital",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-011",
+      "name": "Sarasota",
+      "type": "substation",
+      "region": "Central",
+      "location": {
+        "lat": 27.33,
+        "lon": -82.53
+      },
+      "path": null,
+      "elevation_m": 4.0,
+      "flood_zone": "AE",
+      "install_year": 1979,
+      "customers_served": 38000,
+      "condition_rating": 5,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 23.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1006",
+        "name": "Luis Ortega",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops Central",
+        "email": "lortega@sgw.example",
+        "phone": "+1-813-555-0106"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "WWTP-004",
+        "PS-010"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-006",
+          "name": "Sarasota Bay Medical Center",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2021-07-09",
+          "wo_no": "WO-19414",
+          "type": "STORM",
+          "summary": "Hurricane Elsa 2021: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Elsa 2021",
+          "cost_usd": 102388.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-012",
+      "name": "Venice",
+      "type": "substation",
+      "region": "Central",
+      "location": {
+        "lat": 27.1,
+        "lon": -82.44
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1993,
+      "customers_served": 24000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 45.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1006",
+        "name": "Luis Ortega",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops Central",
+        "email": "lortega@sgw.example",
+        "phone": "+1-813-555-0106"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-011"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-016",
+          "name": "Venice Senior Living",
+          "kind": "nursing_home",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2017-09-12",
+          "wo_no": "WO-19337",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 167129.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-013",
+      "name": "Port Charlotte",
+      "type": "substation",
+      "region": "South",
+      "location": {
+        "lat": 26.98,
+        "lon": -82.09
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1987,
+      "customers_served": 31000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 25.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1007",
+        "name": "Hannah Cole",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops South",
+        "email": "hcole@sgw.example",
+        "phone": "+1-813-555-0107"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-005",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "TL-006",
+        "WTP-006",
+        "WWTP-005",
+        "PS-012",
+        "PS-013"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-007",
+          "name": "Charlotte Harbor Hospital",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-014",
+      "name": "Fort Myers South",
+      "type": "substation",
+      "region": "South",
+      "location": {
+        "lat": 26.58,
+        "lon": -81.87
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1974,
+      "customers_served": 44000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 20.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1007",
+        "name": "Hannah Cole",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops South",
+        "email": "hcole@sgw.example",
+        "phone": "+1-813-555-0107"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-008",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "WTP-002",
+        "WWTP-003",
+        "PS-007",
+        "PS-017"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-008",
+          "name": "Caloosa Regional Medical Center",
+          "kind": "hospital",
+          "via": "power"
+        },
+        {
+          "facility_id": "CF-012",
+          "name": "South Fort Myers High School Shelter",
+          "kind": "shelter",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2022-03-14",
+          "wo_no": "WO-19239",
+          "type": "CM",
+          "summary": "Transformer T2 bushing oil leak, temporary repair",
+          "failure_code": "LEAK",
+          "storm_event": "",
+          "cost_usd": 18500.0
+        },
+        {
+          "date": "2021-11-02",
+          "wo_no": "WO-19246",
+          "type": "CM",
+          "summary": "Control house roof leak over relay panel",
+          "failure_code": "STRUCT",
+          "storm_event": "",
+          "cost_usd": 7400.0
+        },
+        {
+          "date": "2017-09-12",
+          "wo_no": "WO-19295",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 179421.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-015",
+      "name": "Cape Coral",
+      "type": "substation",
+      "region": "South",
+      "location": {
+        "lat": 26.6,
+        "lon": -81.97
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1998,
+      "customers_served": 47000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 25.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1007",
+        "name": "Hannah Cole",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops South",
+        "email": "hcole@sgw.example",
+        "phone": "+1-813-555-0107"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "WTP-005",
+        "PS-014",
+        "PS-015"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-009",
+          "name": "Cape Coral Community Hospital",
+          "kind": "hospital",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2017-09-11",
+          "wo_no": "WO-19323",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 111662.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-016",
+      "name": "Lee Bulk",
+      "type": "substation",
+      "region": "South",
+      "location": {
+        "lat": 26.7,
+        "lon": -81.75
+      },
+      "path": null,
+      "elevation_m": 9.0,
+      "flood_zone": "X",
+      "install_year": 1984,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 35.0,
+      "attributes": {
+        "voltage_kv": 230
+      },
+      "owner": {
+        "employee_id": "E1007",
+        "name": "Hannah Cole",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops South",
+        "email": "hcole@sgw.example",
+        "phone": "+1-813-555-0107"
+      },
+      "upstream": [
+        {
+          "asset_id": "TL-006",
+          "type": "power"
+        },
+        {
+          "asset_id": "TL-007",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "TL-008",
+        "TL-009",
+        "SUB-017",
+        "PS-018"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-011",
+          "name": "Lee County Civic Center Shelter",
+          "kind": "shelter",
+          "via": "power"
+        },
+        {
+          "facility_id": "CF-014",
+          "name": "Lee County EOC",
+          "kind": "emergency_operations",
+          "via": "power"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "SUB-017",
+      "name": "Fort Myers Beach",
+      "type": "substation",
+      "region": "South",
+      "location": {
+        "lat": 26.46,
+        "lon": -81.94
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "VE",
+      "install_year": 1982,
+      "customers_served": 9000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 13.0,
+      "attributes": {
+        "voltage_kv": 69
+      },
+      "owner": {
+        "employee_id": "E1007",
+        "name": "Hannah Cole",
+        "title": "T&D Operations Supervisor",
+        "team": "T&D Ops South",
+        "email": "hcole@sgw.example",
+        "phone": "+1-813-555-0107"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-016",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-016"
+      ],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-015",
+          "name": "Gulf Shores Nursing & Rehab",
+          "kind": "nursing_home",
+          "via": "power"
+        }
+      ],
+      "history": [
+        {
+          "date": "2021-09-30",
+          "wo_no": "WO-19281",
+          "type": "CM",
+          "summary": "Switchgear enclosure corrosion, below design flood elevation",
+          "failure_code": "CORR",
+          "storm_event": "",
+          "cost_usd": 11200.0
+        },
+        {
+          "date": "2017-09-12",
+          "wo_no": "WO-19309",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Flooded control cabinet / relay failure",
+          "failure_code": "FLOOD",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 170037.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-001",
+      "name": "Tampa Bay Regional WTP",
+      "type": "water_treatment",
+      "region": "North",
+      "location": {
+        "lat": 27.99,
+        "lon": -82.37
+      },
+      "path": null,
+      "elevation_m": 10.0,
+      "flood_zone": "X",
+      "install_year": 1980,
+      "customers_served": 180000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 72.0,
+      "tree_canopy_pct": 28.0,
+      "attributes": {
+        "capacity_mgd": 120
+      },
+      "owner": {
+        "employee_id": "E1011",
+        "name": "Sofia Marquez",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops North",
+        "email": "smarquez@sgw.example",
+        "phone": "+1-813-555-0111"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-001",
+        "PS-004"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-002",
+      "name": "Fort Myers WTP",
+      "type": "water_treatment",
+      "region": "South",
+      "location": {
+        "lat": 26.62,
+        "lon": -81.85
+      },
+      "path": null,
+      "elevation_m": 4.0,
+      "flood_zone": "AE",
+      "install_year": 1976,
+      "customers_served": 62000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 48.0,
+      "tree_canopy_pct": 13.0,
+      "attributes": {
+        "capacity_mgd": 24
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-014",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-007",
+        "PS-018"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-003",
+      "name": "Pinellas WTP",
+      "type": "water_treatment",
+      "region": "North",
+      "location": {
+        "lat": 27.95,
+        "lon": -82.72
+      },
+      "path": null,
+      "elevation_m": 9.0,
+      "flood_zone": "X",
+      "install_year": 1985,
+      "customers_served": 140000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 72.0,
+      "tree_canopy_pct": 18.0,
+      "attributes": {
+        "capacity_mgd": 80
+      },
+      "owner": {
+        "employee_id": "E1011",
+        "name": "Sofia Marquez",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops North",
+        "email": "smarquez@sgw.example",
+        "phone": "+1-813-555-0111"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-006",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-006"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-004",
+      "name": "Manatee WTP",
+      "type": "water_treatment",
+      "region": "Central",
+      "location": {
+        "lat": 27.52,
+        "lon": -82.42
+      },
+      "path": null,
+      "elevation_m": 12.0,
+      "flood_zone": "X",
+      "install_year": 1992,
+      "customers_served": 95000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 48.0,
+      "tree_canopy_pct": 17.0,
+      "attributes": {
+        "capacity_mgd": 54
+      },
+      "owner": {
+        "employee_id": "E1012",
+        "name": "James Whitfield",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops Central",
+        "email": "jwhitfield@sgw.example",
+        "phone": "+1-813-555-0112"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-009",
+        "PS-011"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-005",
+      "name": "Cape Coral WTP",
+      "type": "water_treatment",
+      "region": "South",
+      "location": {
+        "lat": 26.64,
+        "lon": -81.99
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 2001,
+      "customers_served": 70000,
+      "condition_rating": 2,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 9.0,
+      "attributes": {
+        "capacity_mgd": 28
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-015",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-014"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WTP-006",
+      "name": "Peace River WTP",
+      "type": "water_treatment",
+      "region": "South",
+      "location": {
+        "lat": 27.03,
+        "lon": -81.99
+      },
+      "path": null,
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1995,
+      "customers_served": 58000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 48.0,
+      "tree_canopy_pct": 7.0,
+      "attributes": {
+        "capacity_mgd": 36
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-013",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-012"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WWTP-001",
+      "name": "Tampa Bay AWT",
+      "type": "wastewater_treatment",
+      "region": "North",
+      "location": {
+        "lat": 27.925,
+        "lon": -82.43
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1978,
+      "customers_served": 150000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 48.0,
+      "tree_canopy_pct": 8.0,
+      "attributes": {
+        "capacity_mgd": 96
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-002",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-002",
+        "PS-003",
+        "PS-005"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WWTP-002",
+      "name": "St. Petersburg Southwest WRF",
+      "type": "wastewater_treatment",
+      "region": "North",
+      "location": {
+        "lat": 27.73,
+        "lon": -82.7
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1983,
+      "customers_served": 90000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 10.0,
+      "attributes": {
+        "capacity_mgd": 20
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-007",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-008"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WWTP-003",
+      "name": "Fort Myers South WRF",
+      "type": "wastewater_treatment",
+      "region": "South",
+      "location": {
+        "lat": 26.56,
+        "lon": -81.89
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1980,
+      "customers_served": 60000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 30.0,
+      "attributes": {
+        "capacity_mgd": 15
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-014",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-015",
+        "PS-016",
+        "PS-017"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WWTP-004",
+      "name": "Sarasota WRF",
+      "type": "wastewater_treatment",
+      "region": "Central",
+      "location": {
+        "lat": 27.35,
+        "lon": -82.5
+      },
+      "path": null,
+      "elevation_m": 4.0,
+      "flood_zone": "AE",
+      "install_year": 1988,
+      "customers_served": 55000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 24.0,
+      "attributes": {
+        "capacity_mgd": 18
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-011",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-010"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "WWTP-005",
+      "name": "Punta Gorda WRF",
+      "type": "wastewater_treatment",
+      "region": "South",
+      "location": {
+        "lat": 26.92,
+        "lon": -82.03
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1991,
+      "customers_served": 30000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 17.0,
+      "attributes": {
+        "capacity_mgd": 4
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-013",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "PS-013"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-001",
+      "name": "Tampa North Booster",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 28.03,
+        "lon": -82.46
+      },
+      "path": null,
+      "elevation_m": 14.0,
+      "flood_zone": "X",
+      "install_year": 1990,
+      "customers_served": 38000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 19.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1011",
+        "name": "Sofia Marquez",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops North",
+        "email": "smarquez@sgw.example",
+        "phone": "+1-813-555-0111"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-001",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-001",
+          "name": "Bayshore Regional Hospital",
+          "kind": "hospital",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-002",
+          "name": "Westshore Medical Center",
+          "kind": "hospital",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-002",
+      "name": "Davis Islands Lift",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.93,
+        "lon": -82.455
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "VE",
+      "install_year": 1975,
+      "customers_served": 9000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 21.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-002",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-001",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2022-08-22",
+          "wo_no": "WO-19288",
+          "type": "CM",
+          "summary": "Pump 2 impeller wear, running on single pump",
+          "failure_code": "MECH",
+          "storm_event": "",
+          "cost_usd": 0.0
+        },
+        {
+          "date": "2020-11-13",
+          "wo_no": "WO-19365",
+          "type": "STORM",
+          "summary": "Tropical Storm Eta 2020: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Tropical Storm Eta 2020",
+          "cost_usd": 147264.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-003",
+      "name": "Westshore Lift",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.94,
+        "lon": -82.53
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1989,
+      "customers_served": 14000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 22.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-003",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-001",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-004",
+      "name": "Brandon Booster",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.93,
+        "lon": -82.3
+      },
+      "path": null,
+      "elevation_m": 17.0,
+      "flood_zone": "X",
+      "install_year": 1999,
+      "customers_served": 41000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 24.0,
+      "tree_canopy_pct": 5.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1011",
+        "name": "Sofia Marquez",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops North",
+        "email": "smarquez@sgw.example",
+        "phone": "+1-813-555-0111"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-004",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-001",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-003",
+          "name": "Brandon Community Hospital",
+          "kind": "hospital",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-010",
+          "name": "Tampa Fairgrounds Shelter",
+          "kind": "shelter",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-005",
+      "name": "Apollo Beach Lift",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.765,
+        "lon": -82.41
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "AE",
+      "install_year": 2006,
+      "customers_served": 7000,
+      "condition_rating": 2,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 8.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-005",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-001",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2020-11-12",
+          "wo_no": "WO-19372",
+          "type": "STORM",
+          "summary": "Tropical Storm Eta 2020: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Tropical Storm Eta 2020",
+          "cost_usd": 200498.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-006",
+      "name": "St. Petersburg Booster",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.79,
+        "lon": -82.66
+      },
+      "path": null,
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1984,
+      "customers_served": 36000,
+      "condition_rating": 4,
+      "has_backup_power": true,
+      "backup_hours": 12.0,
+      "tree_canopy_pct": 22.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1011",
+        "name": "Sofia Marquez",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops North",
+        "email": "smarquez@sgw.example",
+        "phone": "+1-813-555-0111"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-007",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-003",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-004",
+          "name": "Suncoast General Hospital",
+          "kind": "hospital",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-013",
+          "name": "Pinellas County EOC",
+          "kind": "emergency_operations",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-007",
+      "name": "Fort Myers South Booster",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.57,
+        "lon": -81.86
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1979,
+      "customers_served": 28000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 29.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-014",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-002",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-008",
+          "name": "Caloosa Regional Medical Center",
+          "kind": "hospital",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-012",
+          "name": "South Fort Myers High School Shelter",
+          "kind": "shelter",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-015",
+          "name": "Gulf Shores Nursing & Rehab",
+          "kind": "nursing_home",
+          "via": "water"
+        }
+      ],
+      "history": [
+        {
+          "date": "2022-06-01",
+          "wo_no": "WO-19267",
+          "type": "CM",
+          "summary": "Standby generator failed load test; unit removed, portable hookup only",
+          "failure_code": "GEN",
+          "storm_event": "",
+          "cost_usd": 0.0
+        },
+        {
+          "date": "2017-09-11",
+          "wo_no": "WO-19330",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 176220.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-008",
+      "name": "Clearwater Lift",
+      "type": "pumping_station",
+      "region": "North",
+      "location": {
+        "lat": 27.96,
+        "lon": -82.8
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1992,
+      "customers_served": 12000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 25.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-008",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-002",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2020-11-13",
+          "wo_no": "WO-19386",
+          "type": "STORM",
+          "summary": "Tropical Storm Eta 2020: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Tropical Storm Eta 2020",
+          "cost_usd": 89158.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-009",
+      "name": "Bradenton Booster",
+      "type": "pumping_station",
+      "region": "Central",
+      "location": {
+        "lat": 27.49,
+        "lon": -82.56
+      },
+      "path": null,
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1994,
+      "customers_served": 30000,
+      "condition_rating": 3,
+      "has_backup_power": true,
+      "backup_hours": 12.0,
+      "tree_canopy_pct": 14.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1012",
+        "name": "James Whitfield",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops Central",
+        "email": "jwhitfield@sgw.example",
+        "phone": "+1-813-555-0112"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-010",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-004",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-005",
+          "name": "Manatee Valley Hospital",
+          "kind": "hospital",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-006",
+          "name": "Sarasota Bay Medical Center",
+          "kind": "hospital",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-010",
+      "name": "Sarasota Lift",
+      "type": "pumping_station",
+      "region": "Central",
+      "location": {
+        "lat": 27.33,
+        "lon": -82.54
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1981,
+      "customers_served": 15000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 19.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-011",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-004",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2021-07-09",
+          "wo_no": "WO-19407",
+          "type": "STORM",
+          "summary": "Hurricane Elsa 2021: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Hurricane Elsa 2021",
+          "cost_usd": 89487.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-011",
+      "name": "Venice Booster",
+      "type": "pumping_station",
+      "region": "Central",
+      "location": {
+        "lat": 27.09,
+        "lon": -82.44
+      },
+      "path": null,
+      "elevation_m": 4.0,
+      "flood_zone": "AE",
+      "install_year": 1997,
+      "customers_served": 21000,
+      "condition_rating": 2,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 28.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1012",
+        "name": "James Whitfield",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops Central",
+        "email": "jwhitfield@sgw.example",
+        "phone": "+1-813-555-0112"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-012",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-004",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-016",
+          "name": "Venice Senior Living",
+          "kind": "nursing_home",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-012",
+      "name": "Port Charlotte Booster",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.99,
+        "lon": -82.1
+      },
+      "path": null,
+      "elevation_m": 3.0,
+      "flood_zone": "AE",
+      "install_year": 1993,
+      "customers_served": 26000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 13.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-013",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-006",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-007",
+          "name": "Charlotte Harbor Hospital",
+          "kind": "hospital",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-013",
+      "name": "Punta Gorda Lift",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.93,
+        "lon": -82.05
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "AE",
+      "install_year": 1986,
+      "customers_served": 8000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 29.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-013",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-005",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2017-09-13",
+          "wo_no": "WO-19351",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 99286.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-014",
+      "name": "Cape Coral Booster",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.61,
+        "lon": -81.98
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 2003,
+      "customers_served": 33000,
+      "condition_rating": 2,
+      "has_backup_power": true,
+      "backup_hours": 12.0,
+      "tree_canopy_pct": 8.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-015",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-005",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-009",
+          "name": "Cape Coral Community Hospital",
+          "kind": "hospital",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-015",
+      "name": "Cape Coral South Lift",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.56,
+        "lon": -81.99
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "AE",
+      "install_year": 2000,
+      "customers_served": 11000,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 14.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-015",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-003",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-016",
+      "name": "Fort Myers Beach Lift",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.45,
+        "lon": -81.95
+      },
+      "path": null,
+      "elevation_m": 1.0,
+      "flood_zone": "VE",
+      "install_year": 1985,
+      "customers_served": 6000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 25.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-017",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-003",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2022-04-11",
+          "wo_no": "WO-19274",
+          "type": "CM",
+          "summary": "Wet well level sensor corroded (salt air)",
+          "failure_code": "CORR",
+          "storm_event": "",
+          "cost_usd": 2600.0
+        },
+        {
+          "date": "2017-09-13",
+          "wo_no": "WO-19316",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Lost utility power, pump down; generator dispatched",
+          "failure_code": "POWER",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 96371.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-017",
+      "name": "Fort Myers Downtown Lift",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.64,
+        "lon": -81.87
+      },
+      "path": null,
+      "elevation_m": 2.0,
+      "flood_zone": "AE",
+      "install_year": 1977,
+      "customers_served": 13000,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 11.0,
+      "attributes": {
+        "service": "lift"
+      },
+      "owner": {
+        "employee_id": "E1015",
+        "name": "Olivia Brooks",
+        "title": "Wastewater Manager",
+        "team": "Wastewater Ops",
+        "email": "obrooks@sgw.example",
+        "phone": "+1-813-555-0115"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-014",
+          "type": "power"
+        },
+        {
+          "asset_id": "WWTP-003",
+          "type": "wastewater"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "PS-018",
+      "name": "Lehigh Acres Booster",
+      "type": "pumping_station",
+      "region": "South",
+      "location": {
+        "lat": 26.62,
+        "lon": -81.64
+      },
+      "path": null,
+      "elevation_m": 8.0,
+      "flood_zone": "X",
+      "install_year": 2021,
+      "customers_served": 22000,
+      "condition_rating": 1,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 9.0,
+      "attributes": {
+        "service": "booster"
+      },
+      "owner": {
+        "employee_id": "E1013",
+        "name": "Mei Chen",
+        "title": "Water Operations Supervisor",
+        "team": "Water Ops South",
+        "email": "mchen@sgw.example",
+        "phone": "+1-813-555-0113"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-016",
+          "type": "power"
+        },
+        {
+          "asset_id": "WTP-002",
+          "type": "water"
+        }
+      ],
+      "downstream": [],
+      "critical_facilities": [
+        {
+          "facility_id": "CF-011",
+          "name": "Lee County Civic Center Shelter",
+          "kind": "shelter",
+          "via": "water"
+        },
+        {
+          "facility_id": "CF-014",
+          "name": "Lee County EOC",
+          "kind": "emergency_operations",
+          "via": "water"
+        }
+      ],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-001",
+      "name": "Bay Energy \u2013 Tampa Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "North",
+      "location": {
+        "lat": 27.8799,
+        "lon": -82.419
+      },
+      "path": [
+        [
+          -82.4,
+          27.792
+        ],
+        [
+          -82.3994,
+          27.8225
+        ],
+        [
+          -82.419,
+          27.8799
+        ],
+        [
+          -82.4055,
+          27.9476
+        ],
+        [
+          -82.42,
+          27.99
+        ]
+      ],
+      "elevation_m": 7.5,
+      "flood_zone": "X",
+      "install_year": 1985,
+      "customers_served": 0,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 10.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 22.1
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "GEN-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-001"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-002",
+      "name": "Bay Energy \u2013 Pinellas Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "North",
+      "location": {
+        "lat": 27.8172,
+        "lon": -82.5631
+      },
+      "path": [
+        [
+          -82.4,
+          27.792
+        ],
+        [
+          -82.4643,
+          27.7975
+        ],
+        [
+          -82.5631,
+          27.8172
+        ],
+        [
+          -82.6513,
+          27.8582
+        ],
+        [
+          -82.72,
+          27.88
+        ]
+      ],
+      "elevation_m": 4.5,
+      "flood_zone": "X",
+      "install_year": 1986,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 29.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 33.0
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "GEN-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-006"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-003",
+      "name": "Tampa Bulk \u2013 Manatee Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "Central",
+      "location": {
+        "lat": 27.7868,
+        "lon": -82.404
+      },
+      "path": [
+        [
+          -82.42,
+          27.99
+        ],
+        [
+          -82.4339,
+          27.8755
+        ],
+        [
+          -82.404,
+          27.7868
+        ],
+        [
+          -82.4162,
+          27.6861
+        ],
+        [
+          -82.4,
+          27.58
+        ]
+      ],
+      "elevation_m": 13.0,
+      "flood_zone": "X",
+      "install_year": 1983,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 55.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 45.6
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-001",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-009"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-004",
+      "name": "Manatee Energy \u2013 Manatee Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "Central",
+      "location": {
+        "lat": 27.5999,
+        "lon": -82.3603
+      },
+      "path": [
+        [
+          -82.345,
+          27.604
+        ],
+        [
+          -82.3464,
+          27.5783
+        ],
+        [
+          -82.3603,
+          27.5999
+        ],
+        [
+          -82.3926,
+          27.5722
+        ],
+        [
+          -82.4,
+          27.58
+        ]
+      ],
+      "elevation_m": 15.0,
+      "flood_zone": "X",
+      "install_year": 2002,
+      "customers_served": 0,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 24.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 6.0
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "GEN-002",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-009"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-005",
+      "name": "Manatee Bulk \u2013 Port Charlotte 230 kV",
+      "type": "transmission_line",
+      "region": "Central",
+      "location": {
+        "lat": 27.2639,
+        "lon": -82.2613
+      },
+      "path": [
+        [
+          -82.4,
+          27.58
+        ],
+        [
+          -82.3042,
+          27.4235
+        ],
+        [
+          -82.2613,
+          27.2639
+        ],
+        [
+          -82.1536,
+          27.1341
+        ],
+        [
+          -82.09,
+          26.98
+        ]
+      ],
+      "elevation_m": 8.5,
+      "flood_zone": "X",
+      "install_year": 1987,
+      "customers_served": 0,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 62.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 73.4
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-009",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-013"
+      ],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2021-07-09",
+          "wo_no": "WO-19421",
+          "type": "STORM",
+          "summary": "Hurricane Elsa 2021: Downed conductor, tree contact",
+          "failure_code": "VEG",
+          "storm_event": "Hurricane Elsa 2021",
+          "cost_usd": 106703.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-006",
+      "name": "Port Charlotte \u2013 Lee Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "South",
+      "location": {
+        "lat": 26.8589,
+        "lon": -81.9186
+      },
+      "path": [
+        [
+          -82.09,
+          26.98
+        ],
+        [
+          -81.9927,
+          26.9192
+        ],
+        [
+          -81.9186,
+          26.8589
+        ],
+        [
+          -81.8399,
+          26.7721
+        ],
+        [
+          -81.75,
+          26.7
+        ]
+      ],
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1988,
+      "customers_served": 0,
+      "condition_rating": 3,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 48.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 45.9
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-013",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-016"
+      ],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2017-09-13",
+          "wo_no": "WO-19344",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Downed conductor, tree contact",
+          "failure_code": "VEG",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 132894.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-007",
+      "name": "Charlotte Harbor CC \u2013 Lee Bulk 230 kV",
+      "type": "transmission_line",
+      "region": "South",
+      "location": {
+        "lat": 26.8306,
+        "lon": -81.828
+      },
+      "path": [
+        [
+          -81.935,
+          26.955
+        ],
+        [
+          -81.8756,
+          26.896
+        ],
+        [
+          -81.828,
+          26.8306
+        ],
+        [
+          -81.7881,
+          26.7456
+        ],
+        [
+          -81.75,
+          26.7
+        ]
+      ],
+      "elevation_m": 7.5,
+      "flood_zone": "X",
+      "install_year": 2009,
+      "customers_served": 0,
+      "condition_rating": 2,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 30.0,
+      "attributes": {
+        "voltage_kv": 230,
+        "length_km": 33.8
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "GEN-003",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-016"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-008",
+      "name": "Lee Bulk \u2013 Fort Myers South 69 kV",
+      "type": "transmission_line",
+      "region": "South",
+      "location": {
+        "lat": 26.6293,
+        "lon": -81.8268
+      },
+      "path": [
+        [
+          -81.75,
+          26.7
+        ],
+        [
+          -81.7909,
+          26.6616
+        ],
+        [
+          -81.8268,
+          26.6293
+        ],
+        [
+          -81.856,
+          26.6011
+        ],
+        [
+          -81.87,
+          26.58
+        ]
+      ],
+      "elevation_m": 6.0,
+      "flood_zone": "X",
+      "install_year": 1976,
+      "customers_served": 0,
+      "condition_rating": 4,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 58.0,
+      "attributes": {
+        "voltage_kv": 69,
+        "length_km": 17.9
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-016",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-014"
+      ],
+      "critical_facilities": [],
+      "history": [
+        {
+          "date": "2022-07-08",
+          "wo_no": "WO-19260",
+          "type": "INSP",
+          "summary": "Vegetation encroachment within 3 ft of conductor, spans 14\u201319",
+          "failure_code": "VEG",
+          "storm_event": "",
+          "cost_usd": 900.0
+        },
+        {
+          "date": "2022-05-20",
+          "wo_no": "WO-19253",
+          "type": "CM",
+          "summary": "Cracked crossarms on 6 structures, replacement deferred to FY23",
+          "failure_code": "STRUCT",
+          "storm_event": "",
+          "cost_usd": 0.0
+        },
+        {
+          "date": "2017-09-12",
+          "wo_no": "WO-19302",
+          "type": "STORM",
+          "summary": "Hurricane Irma 2017: Downed conductor, tree contact",
+          "failure_code": "VEG",
+          "storm_event": "Hurricane Irma 2017",
+          "cost_usd": 137924.0
+        }
+      ],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    },
+    {
+      "asset_id": "TL-009",
+      "name": "Lee Bulk \u2013 Cape Coral 69 kV",
+      "type": "transmission_line",
+      "region": "South",
+      "location": {
+        "lat": 26.6384,
+        "lon": -81.8652
+      },
+      "path": [
+        [
+          -81.75,
+          26.7
+        ],
+        [
+          -81.7996,
+          26.6696
+        ],
+        [
+          -81.8652,
+          26.6384
+        ],
+        [
+          -81.9243,
+          26.6425
+        ],
+        [
+          -81.97,
+          26.6
+        ]
+      ],
+      "elevation_m": 5.5,
+      "flood_zone": "X",
+      "install_year": 1998,
+      "customers_served": 0,
+      "condition_rating": 2,
+      "has_backup_power": false,
+      "backup_hours": 0.0,
+      "tree_canopy_pct": 6.0,
+      "attributes": {
+        "voltage_kv": 69,
+        "length_km": 24.5
+      },
+      "owner": {
+        "employee_id": "E1009",
+        "name": "Grace Okafor",
+        "title": "Transmission Lead",
+        "team": "Transmission",
+        "email": "gokafor@sgw.example",
+        "phone": "+1-813-555-0109"
+      },
+      "upstream": [
+        {
+          "asset_id": "SUB-016",
+          "type": "power"
+        }
+      ],
+      "downstream": [
+        "SUB-015"
+      ],
+      "critical_facilities": [],
+      "history": [],
+      "status": null,
+      "field_events": [],
+      "sources": [
+        "gis",
+        "cmms",
+        "hr"
+      ]
+    }
+  ]
+}

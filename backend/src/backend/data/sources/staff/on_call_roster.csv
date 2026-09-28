@@ -1,0 +1,4 @@
+role,employee_id,start,end
+Emergency Manager on duty,E1001,2022-09-19T12:00:00Z,2022-09-28T12:00:00Z
+Emergency Manager on duty,E1002,2022-09-28T12:00:00Z,2022-10-05T12:00:00Z
+Executive on call,E1003,2022-09-19T12:00:00Z,2022-10-05T12:00:00Z

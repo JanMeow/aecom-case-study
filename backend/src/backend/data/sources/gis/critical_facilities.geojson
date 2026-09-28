@@ -1,0 +1,310 @@
+{
+ "type": "FeatureCollection",
+ "name": "critical_facilities",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.457,
+     27.936
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-001",
+    "name": "Bayshore Regional Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-002",
+    "water_from": "PS-001",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.515,
+     27.955
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-002",
+    "name": "Westshore Medical Center",
+    "kind": "hospital",
+    "power_from": "SUB-003",
+    "water_from": "PS-001",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.285,
+     27.935
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-003",
+    "name": "Brandon Community Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-004",
+    "water_from": "PS-004",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.65,
+     27.775
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-004",
+    "name": "Suncoast General Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-007",
+    "water_from": "PS-006",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.565,
+     27.495
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-005",
+    "name": "Manatee Valley Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-010",
+    "water_from": "PS-009",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.525,
+     27.335
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-006",
+    "name": "Sarasota Bay Medical Center",
+    "kind": "hospital",
+    "power_from": "SUB-011",
+    "water_from": "PS-009",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.085,
+     26.975
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-007",
+    "name": "Charlotte Harbor Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-013",
+    "water_from": "PS-012",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.865,
+     26.575
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-008",
+    "name": "Caloosa Regional Medical Center",
+    "kind": "hospital",
+    "power_from": "SUB-014",
+    "water_from": "PS-007",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.975,
+     26.605
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-009",
+    "name": "Cape Coral Community Hospital",
+    "kind": "hospital",
+    "power_from": "SUB-015",
+    "water_from": "PS-014",
+    "beds": 300,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.36,
+     27.99
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-010",
+    "name": "Tampa Fairgrounds Shelter",
+    "kind": "shelter",
+    "power_from": "SUB-004",
+    "water_from": "PS-004",
+    "beds": null,
+    "capacity_people": 1500
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.82,
+     26.7
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-011",
+    "name": "Lee County Civic Center Shelter",
+    "kind": "shelter",
+    "power_from": "SUB-016",
+    "water_from": "PS-018",
+    "beds": null,
+    "capacity_people": 1500
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.86,
+     26.555
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-012",
+    "name": "South Fort Myers High School Shelter",
+    "kind": "shelter",
+    "power_from": "SUB-014",
+    "water_from": "PS-007",
+    "beds": null,
+    "capacity_people": 1500
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.74,
+     27.905
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-013",
+    "name": "Pinellas County EOC",
+    "kind": "emergency_operations",
+    "power_from": "SUB-006",
+    "water_from": "PS-006",
+    "beds": null,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.8,
+     26.65
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-014",
+    "name": "Lee County EOC",
+    "kind": "emergency_operations",
+    "power_from": "SUB-016",
+    "water_from": "PS-018",
+    "beds": null,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -81.935,
+     26.47
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-015",
+    "name": "Gulf Shores Nursing & Rehab",
+    "kind": "nursing_home",
+    "power_from": "SUB-017",
+    "water_from": "PS-007",
+    "beds": 120,
+    "capacity_people": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -82.435,
+     27.095
+    ]
+   },
+   "properties": {
+    "facility_id": "CF-016",
+    "name": "Venice Senior Living",
+    "kind": "nursing_home",
+    "power_from": "SUB-012",
+    "water_from": "PS-011",
+    "beds": 120,
+    "capacity_people": null
+   }
+  }
+ ]
+}
