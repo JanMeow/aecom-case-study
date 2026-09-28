@@ -2,7 +2,6 @@
 Calls to Claude. Prompt wording lives in prompt.py; playbook documents and citation parsing in playbook.py.
 """
 from anthropic import AsyncAnthropic
-from anthropic.types import Message
 from backend.config.setting import anthropic_api_key
 from backend.LLM.model import CitedAnswer
 from backend.ETL.model import Advisory, AggregatedData, RiskResult
