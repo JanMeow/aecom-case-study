@@ -278,12 +278,9 @@ def standard_risk_score(assets: dict[str, AggregatedData], advisory: Advisory) -
     # 5. Score, tier and explanation
     return {a: to_result(assets[a], own[a], lik[a], cons[a], "rules") for a in assets}
 
-
-def ml_risk_score(assets: dict[str, AggregatedData], advisory: Advisory) -> dict[str, RiskResult]:
-    """Same five steps as standard_risk_score; only step 2 (own chance) comes from the ML model,
-    so the two scores can be compared like for like."""
-    # 1. Which wind zones is each asset in (now and forecast)?
-    zones = {a: wind_zones(asset, advisory) for a, asset in assets.items()}
+def ml_risk_score_for_zones(assets: dict[str, AggregatedData], zones: dict[str, tuple[int, int]]) -> dict[str, RiskResult]:
+    """Steps 2-5 (ML) given each asset's (now_kt, forecast_kt), wherever the zones come from:
+    a real advisory (ml_risk_score) or a what-if scenario (ml_simulate_risk_score)."""
     # 2. How likely is each asset to fail by itself?  (ML model instead of the lookup table)
     own = ml_own_chance(assets, zones)
     # 3. Could it fail because something it depends on fails?
@@ -293,3 +290,33 @@ def ml_risk_score(assets: dict[str, AggregatedData], advisory: Advisory) -> dict
     cons = {a: consequence(assets, a) for a in assets}
     # 5. Score, tier and explanation
     return {a: to_result(assets[a], own[a], lik[a], cons[a], "ml") for a in assets}
+
+
+def ml_risk_score(assets: dict[str, AggregatedData], advisory: Advisory) -> dict[str, RiskResult]:
+    """Same five steps as standard_risk_score; only step 2 (own chance) comes from the ML model,
+    so the two scores can be compared like for like."""
+    # 1. Which wind zones is each asset in (now and forecast)?
+    zones = {a: wind_zones(asset, advisory) for a, asset in assets.items()}
+    return ml_risk_score_for_zones(assets, zones)
+
+
+def ml_simulate_risk_score(assets: dict[str, AggregatedData], wind_zone: int, region: str | None = None,
+                           target: str | None = None) -> dict[str, RiskResult]:
+    """What-if (scenario forecast): score every asset as if a storm with this wind zone hit, using the ML model.
+
+    Step 1 is replaced by zones we choose; steps 2-5 are the same as for a real advisory. Who is hit:
+        target only    target="PS-007"                 -> how fragile is this asset by itself
+        a region       region="South" (+ target)       -> a realistic storm over an area, cascade included
+        everywhere     region=None and target=None     -> the whole service area
+    Everyone else gets no wind (0). Every asset is still scored, because step 3 reads the upstream assets.
+    """
+    def hit(asset: AggregatedData) -> bool:
+        if asset.asset_id == target:
+            return True
+        if region is None:
+            return target is None                  # no region and no target: the whole area is hit
+        return asset.region == region
+
+    # 1. Scenario: the chosen wind is here now for the assets hit (full weight, no forecast part), 0 elsewhere
+    zones = {a: ((wind_zone if hit(asset) else 0), 0) for a, asset in assets.items()}
+    return ml_risk_score_for_zones(assets, zones)

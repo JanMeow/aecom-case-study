@@ -131,7 +131,7 @@ def save(path: Path = PROCESSED) -> Path:
     path.write_text(json.dumps({"assets": [a.model_dump(mode="json") for a in aggregate().values()]}, indent=2))
     return path
 
-
+@lru_cache
 def load_processed_assets(path: Path = PROCESSED) -> dict[str, AggregatedData]:
     """Read the baseline written by save()."""
     return {a["asset_id"]: AggregatedData.model_validate(a) for a in json.loads(path.read_text())["assets"]}

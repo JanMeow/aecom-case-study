@@ -4,15 +4,16 @@ import { useStore } from '../store'
 // Tree canopy around an asset from satellite imagery, on request (it calls Esri and Claude, a few seconds):
 // the GIS record vs green cover measured from pixel colours vs the AI's tree canopy estimate and notes.
 export default function CanopyPanel({ assetId }: { assetId: string }) {
-  const { canopy, analyseCanopy } = useStore()
+  const { canopy, analyseCanopy, model, models } = useStore()
   const [showMask, setShowMask] = useState(false)
-  const state = canopy[assetId]
+  const state = canopy[`${assetId}|${model}`]
+  const modelLabel = models.find((m) => m.id === model)?.label.split(' · ')[0] ?? model
 
   if (!state) {
     return (
       <button onClick={() => analyseCanopy(assetId)}
               className="w-full rounded border border-teal/50 py-2 text-xs font-semibold text-teal hover:bg-teal/5">
-        Analyse satellite imagery for tree canopy
+        Analyse satellite imagery for tree canopy ({modelLabel})
       </button>
     )
   }
@@ -44,7 +45,7 @@ export default function CanopyPanel({ assetId }: { assetId: string }) {
       <div className="grid grid-cols-3 gap-2 text-center">
         <Figure label="GIS record" value={state.gis_tree_canopy_pct} note="tree canopy" />
         <Figure label="Measured" value={state.green_pct} note="all green (incl. grass)" />
-        <Figure label="AI estimate" value={state.ai.tree_canopy_pct} note={`trees · ${state.ai.confidence} confidence`} highlight />
+        <Figure label={`AI (${modelLabel})`} value={state.ai.tree_canopy_pct} note={`trees · ${state.ai.confidence} confidence`} highlight />
       </div>
       <p className="rounded bg-slate-50 p-2 text-[11px] leading-snug text-slate-700"><b className="text-teal">AI: </b>{state.ai.notes}</p>
       <div className="text-[10px] text-slate-400">Imagery: {state.attribution}. Measured = Excess Green index, threshold {state.threshold} (Otsu).</div>

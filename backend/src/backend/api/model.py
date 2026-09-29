@@ -74,19 +74,22 @@ class AskRequest(BaseModel):
     """Plain message in the incident room."""
     advisory: int
     question: str
-    conversation:Optional[list[str]] #In the future might send over the prevous conversation for context
+    conversation: Optional[list[str]] = None   # in the future: previous messages for context
+    model: str | None = None                   # AI model; None = the default
 
 
 class ReportRequest(BaseModel):
     """/generate_report [asset]: situation briefing; asset defaults to the room's trigger asset."""
     advisory: int
     asset_id: str | None = None
+    model: str | None = None
 
 
 class PlaybookRequest(BaseModel):
     """/playbook [asset] question: what the playbooks say for one asset."""
     asset_id: str
     question: str
+    model: str | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -94,6 +97,7 @@ class PlaybookRequest(BaseModel):
 # ---------------------------------------------------------------------------
 class CanopyRequest(BaseModel):
     asset_id: str
+    model: str | None = None
 
 
 class CanopyResponse(BaseModel):
@@ -107,3 +111,23 @@ class CanopyResponse(BaseModel):
     mask: str                              # same image with the counted green pixels highlighted
     size_m: float                          # width of the area shown
     attribution: str                       # imagery credit, required by Esri
+    model: str                             # model that made the AI estimate
+
+
+class ModelOption(BaseModel):
+    id: str                                # e.g. "claude-sonnet-5"
+    label: str                             # e.g. "Sonnet 5 · balanced, faster"
+
+
+# ---------------------------------------------------------------------------
+# What-if scenario forecast (ML)
+# ---------------------------------------------------------------------------
+class ForecastResponse(BaseModel):
+    """One asset's ML risk if a storm with this wind zone hit, and how the scenario looks overall."""
+    asset_id: str
+    wind_zone: int                         # 34 / 50 / 64 kt
+    scope: str                             # asset | region | all: who the scenario hits
+    region: str | None                     # the region hit, if scope is "region"
+    result: RiskResult                     # the asset's ML score, tier and reasons under the scenario
+    assets_hit: int
+    tiers: dict[str, int]                  # tier -> number of assets across the scenario

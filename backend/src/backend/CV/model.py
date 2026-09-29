@@ -1,5 +1,7 @@
 """Data models for computer vision on satellite imagery (CV/)."""
-from pydantic import BaseModel
+from typing import Literal
+
+from pydantic import BaseModel, Field
 
 
 class GreenCover(BaseModel):
@@ -10,7 +12,10 @@ class GreenCover(BaseModel):
 
 
 class CanopyInference(BaseModel):
-    """What the vision model reads from the image: tree canopy as opposed to all green (e.g. grass)."""
-    tree_canopy_pct: int    # 0..100: share of the image covered by tree canopy, as estimated by the model
-    confidence: str         # low | medium | high
-    notes: str              # e.g. "mature trees along the east fence, within ~10 m of the switchyard"
+    """What the vision model reads from the image: tree canopy as opposed to all green (e.g. grass).
+    Used as the structured output schema, so the field descriptions guide the model."""
+    tree_canopy_pct: int = Field(ge=0, le=100, description="Share of the whole image covered by tree canopy only "
+                                                           "(not grass or fields), 0-100")
+    confidence: Literal["low", "medium", "high"] = Field(description="How sure the estimate is")
+    notes: str = Field(description="One or two sentences: trees close to equipment, buildings or lines, and "
+                                   "whether the image shows the expected kind of site")

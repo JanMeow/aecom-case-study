@@ -22,6 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(assets_router.router)       # /assets, /assets/{asset_id}
 app.include_router(advisories_router.router)   # /advisories, /advisories/{advisory}/map
 app.include_router(risk_router.router)         # /risks, /alerts

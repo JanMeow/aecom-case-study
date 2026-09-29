@@ -4,6 +4,7 @@ from fastapi import HTTPException
 from backend.api.model import AdvisorySummary
 from backend.ETL.extraction import load_advisory_index, load_processed_assets
 from backend.ETL.model import AggregatedData
+from backend.LLM.service import DEFAULT_MODEL, MODELS
 
 ASSETS = load_processed_assets()
 ADVISORIES = {a["advisory"]: AdvisorySummary(category=a["saffir_simpson"], **a) for a in load_advisory_index()}
@@ -20,3 +21,12 @@ def check_asset(asset_id: str) -> AggregatedData:
     if asset_id not in ASSETS:
         raise HTTPException(404, f"Asset {asset_id} not found")
     return ASSETS[asset_id]
+
+
+def check_model(model: str | None) -> str:
+    """The model to use: the default if none given, 400 if it isn't one of MODELS."""
+    if model is None:
+        return DEFAULT_MODEL
+    if model not in MODELS:
+        raise HTTPException(400, f"Unknown model {model}; available: {list(MODELS)}")
+    return model
