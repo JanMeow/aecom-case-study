@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+
+    # /api/risks -> ${BACKEND_URL}/risks (the trailing slashes strip the /api prefix)
+    location /api/ {
+        proxy_pass ${BACKEND_URL}/;
+        proxy_set_header Host $host;
+        proxy_read_timeout 180s;   # AI reports take ~30 s, more on a slow model
+    }
+
+    # client-side routes (/login) fall back to the app
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
