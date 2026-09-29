@@ -1,6 +1,8 @@
 import { useCurrent, useStore } from '../store'
 import type { RiskResult } from '../types'
+import CanopyPanel from './CanopyPanel'
 import DependencyGraph from './DependencyGraph'
+import ForecastPanel from './ForecastPanel'
 import TierBadge from './TierBadge'
 
 const label = (s: string) => s.replace(/_/g, ' ')
@@ -46,6 +48,16 @@ export default function AssetPanel() {
             <Row k="Backup power" v={d.has_backup_power ? `Yes, ${d.backup_hours} h fuel` : 'No'} />
             <Row k="Customers served" v={d.customers_served.toLocaleString()} />
             <Row k="Data from" v={d.sources.join(', ')} />
+          </section>
+
+          <section className="space-y-2 border-b border-slate-200 p-4 text-xs">
+            <div className="font-semibold text-slate-500">Forecast: what if a storm hit? (ML)</div>
+            <ForecastPanel assetId={selectedId} />
+          </section>
+
+          <section className="space-y-2 border-b border-slate-200 p-4 text-xs">
+            <div className="font-semibold text-slate-500">Tree canopy (satellite)</div>
+            <CanopyPanel assetId={selectedId} />
           </section>
 
           <section className="space-y-2 border-b border-slate-200 p-4 text-xs">

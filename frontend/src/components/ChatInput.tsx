@@ -7,9 +7,10 @@ interface Item { key: string; label: string; sub: string; mono?: boolean }
 // Message box for the incident room, with one pop-up menu:
 //   "/" at the start  -> AI commands (like Claude's slash commands)
 //   "@" in a word     -> room members, to tag someone
+//   "/model "         -> the AI models to switch to
 // Arrows to move, Tab / Enter to pick, Esc to close. Plain text goes to the people in the room only.
 export default function ChatInput({ compact = false }: { compact?: boolean }) {
-  const { user, sendChat } = useStore()
+  const { user, sendChat, models, model: current } = useStore()
   const { all: members } = useRoomMembers()
   const [text, setText] = useState('')
   const [active, setActive] = useState(0)
@@ -17,8 +18,13 @@ export default function ChatInput({ compact = false }: { compact?: boolean }) {
 
   // what the menu should show for the text typed so far
   const command = text.startsWith('/') && !text.includes(' ')
-  const mention = !command ? text.match(/(?:^|\s)@(\w*)$/) : null
-  const items: Item[] = command
+  const modelPick = text.match(/^\/model\s+(\S*)$/)
+  const mention = !command && !modelPick ? text.match(/(?:^|\s)@(\w*)$/) : null
+  const items: Item[] = modelPick
+    ? models.some((m) => m.id === modelPick[1]) ? []            // already a full model name: Enter sends it
+    : models.filter((m) => m.id.includes(modelPick[1].toLowerCase()))
+        .map((m) => ({ key: m.id, label: m.id, sub: m.label + (m.id === current ? ' · current' : ''), mono: true }))
+    : command
     ? COMMANDS.filter((c) => c.name.startsWith(text.toLowerCase()))
         .map((c) => ({ key: c.name, label: c.usage, sub: c.description, mono: true }))
     : mention
@@ -29,7 +35,7 @@ export default function ChatInput({ compact = false }: { compact?: boolean }) {
   const showMenu = items.length > 0 && !menuClosed
 
   const pick = (item: Item) => {
-    setText(command ? `${item.key} ` : text.replace(/@(\w*)$/, `@${item.key} `))
+    setText(modelPick ? `/model ${item.key}` : command ? `${item.key} ` : text.replace(/@(\w*)$/, `@${item.key} `))
     setMenuClosed(false)
   }
   const send = () => { if (text.trim()) { sendChat(text); setText('') } }
@@ -47,7 +53,7 @@ export default function ChatInput({ compact = false }: { compact?: boolean }) {
       {showMenu && (
         <div className="absolute bottom-full left-2 right-2 mb-1 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg">
           <div className="border-b border-slate-100 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
-            {command ? 'AI commands' : 'Tag a member'}
+            {modelPick ? 'AI models' : command ? 'AI commands' : 'Tag a member'}
           </div>
           {items.map((item, i) => (
             <button type="button" key={item.key} onMouseEnter={() => setActive(i)} onClick={() => pick(item)}

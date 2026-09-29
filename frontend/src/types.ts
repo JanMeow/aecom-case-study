@@ -129,7 +129,10 @@ export interface Citation {
 export interface CitedAnswer {
   text: string         // markdown, with [PB-xx §n] labels after cited parts
   citations: Citation[]
+  model: string | null // which model produced it
 }
+
+export interface ModelOption { id: string; label: string }   // GET /llm/models
 
 export interface ChatMessage {
   id: string
@@ -142,4 +145,31 @@ export interface ChatMessage {
   pending?: boolean              // AI is still working on it
   error?: boolean
   approved?: { by: string; at: string }     // reports: approved by a person
+  model?: string                 // AI messages: which model answered
+}
+
+// Tree canopy around an asset from satellite imagery (POST /cv/tree_canopy_pct)
+export interface CanopyResult {
+  asset_id: string
+  gis_tree_canopy_pct: number | null   // what the GIS record says
+  green_pct: number                    // measured from pixel colours; includes grass
+  threshold: number
+  ai: { tree_canopy_pct: number; confidence: 'low' | 'medium' | 'high'; notes: string }
+  image: string                        // data URL
+  mask: string                         // data URL, counted green pixels highlighted
+  size_m: number
+  attribution: string
+  model: string                        // model that made the AI estimate
+}
+
+// What-if scenario forecast (GET /forecast)
+export type ForecastScope = 'asset' | 'region' | 'all'
+export interface ForecastResult {
+  asset_id: string
+  wind_zone: number
+  scope: ForecastScope
+  region: string | null
+  result: RiskResult        // the asset's ML score under the scenario
+  assets_hit: number
+  tiers: Record<Tier, number>
 }

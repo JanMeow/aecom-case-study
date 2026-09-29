@@ -14,6 +14,8 @@ export const COMMANDS: Command[] = [
     description: 'Situation briefing (PB-04 §4) for an asset; defaults to the one that opened the room' },
   { name: '/playbook', usage: '/playbook [asset] question',
     description: 'What the playbooks say for an asset' },
+  { name: '/model', usage: '/model [model]',
+    description: 'Show or change the AI model used for answers and image analysis' },
 ]
 
 export type Parsed =
@@ -21,6 +23,7 @@ export type Parsed =
   | { kind: 'ask'; question: string }
   | { kind: 'report'; assetId?: string }
   | { kind: 'playbook'; assetId?: string; question: string }
+  | { kind: 'model'; modelId?: string }             // switch model (no AI call)
 
 const ASSET_ID = /^[A-Z]{2,4}-\d{3}$/i
 
@@ -29,6 +32,7 @@ export function parseCommand(text: string): Parsed {
   const [first, ...rest] = text.trim().split(/\s+/)
   const assetId = rest[0] && ASSET_ID.test(rest[0]) ? rest[0].toUpperCase() : undefined
   const after = (assetId ? rest.slice(1) : rest).join(' ')
+  if (first === '/model') return { kind: 'model', modelId: rest[0] }
   if (first === '/ask') return { kind: 'ask', question: rest.join(' ') || 'Summarise the situation now.' }
   if (first === '/generate_report') return { kind: 'report', assetId }
   if (first === '/playbook') return { kind: 'playbook', assetId, question: after || 'What should we do for this asset now?' }

@@ -15,7 +15,6 @@ def list_assets() -> list[AssetSummary]:
                          path=a.path, upstream=[link.asset_id for link in a.upstream], downstream=a.downstream)
             for a in ASSETS.values()]
 
-
 @router.get("/{asset_id}")
 def get_asset(asset_id: str) -> AggregatedData:
     """Full aggregated record of one asset: condition, owner, dependencies, facilities, history."""

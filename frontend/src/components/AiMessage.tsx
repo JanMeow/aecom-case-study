@@ -9,6 +9,8 @@ const TITLES = { answer: 'AI assistant', report: 'Situation briefing · draft', 
 // the API returned for it. Reports carry an Approve button: the AI drafts, a person approves.
 export default function AiMessage({ msg, compact = false }: { msg: ChatMessage; compact?: boolean }) {
   const approveReport = useStore((s) => s.approveReport)
+  const models = useStore((s) => s.models)
+  const modelLabel = models.find((m) => m.id === msg.model)?.label.split(' · ')[0] ?? msg.model
   const byLabel = Object.fromEntries((msg.citations ?? []).map((c) => [c.label, c]))
   // "[PB-02 §7]" -> a link the renderer turns into a chip
   const text = msg.text.replace(/\[(PB-\d{2} §\d+)\]/g, (_, label) => `[${label}](#cite)`)
@@ -18,6 +20,7 @@ export default function AiMessage({ msg, compact = false }: { msg: ChatMessage; 
       <div className="mb-1 flex items-center gap-2 text-[11px] text-slate-500">
         <span className="rounded bg-teal px-1.5 py-0.5 font-semibold text-white">AI</span>
         <b className="text-teal">{TITLES[msg.kind ?? 'answer']}</b> · {formatTime(msg.at)}
+        {modelLabel && !msg.pending && <span className="ml-auto rounded bg-slate-100 px-1.5 py-0.5 text-[10px]">{modelLabel}</span>}
       </div>
 
       {msg.pending ? (

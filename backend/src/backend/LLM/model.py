@@ -26,3 +26,4 @@ class Citation(BaseModel):
 class CitedAnswer(BaseModel):
     text: str                               # answer with [PB-xx §n] markers after each cited sentence
     citations: list[Citation] = Field(default_factory=list)   # unique, in order of first use
+    model: str | None = None                # which model produced the answer

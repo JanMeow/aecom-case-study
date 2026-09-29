@@ -1,6 +1,9 @@
 // Calls to the FastAPI backend. Vite forwards /api/* to http://localhost:8000 (vite.config.ts).
 import type {
-  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CitedAnswer, Mode, Person, RiskResponse,
+  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CanopyResult, CitedAnswer, ForecastResult,
+  ForecastScope, ModelOption, Mode,
+  Person,
+  RiskResponse,
 } from './types'
 
 async function get<T>(path: string): Promise<T> {
@@ -28,8 +31,15 @@ export const api = {
   advisoryMap: (n: number) => get<AdvisoryMap>(`/advisories/${n}/map`),
   risks: (n: number) => get<RiskResponse>(`/risks?advisory=${n}`),
   alerts: (n: number, mode: Mode) => get<AlertsResponse>(`/alerts?advisory=${n}&mode=${mode}`),
+  forecast: (asset_id: string, wind_zone: number, scope: ForecastScope) =>
+    get<ForecastResult>(`/forecast?asset_id=${asset_id}&wind_zone=${wind_zone}&scope=${scope}`),
   // AI (incident room commands)
-  ask: (advisory: number, question: string) => post<CitedAnswer>('/llm/ask', { advisory, question }),
-  report: (advisory: number, asset_id?: string) => post<CitedAnswer>('/llm/report', { advisory, asset_id }),
-  playbook: (asset_id: string, question: string) => post<CitedAnswer>('/llm/playbook', { asset_id, question }),
+  models: () => get<ModelOption[]>('/llm/models'),
+  ask: (advisory: number, question: string, model: string) => post<CitedAnswer>('/llm/ask', { advisory, question, model }),
+  report: (advisory: number, asset_id: string | undefined, model: string) =>
+    post<CitedAnswer>('/llm/report', { advisory, asset_id, model }),
+  playbook: (asset_id: string, question: string, model: string) =>
+    post<CitedAnswer>('/llm/playbook', { asset_id, question, model }),
+  // Computer vision
+  canopy: (asset_id: string, model: string) => post<CanopyResult>('/cv/tree_canopy_pct', { asset_id, model }),
 }

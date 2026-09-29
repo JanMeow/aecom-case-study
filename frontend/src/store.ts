@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { api } from './api'
 import { parseCommand } from './commands'
 import type {
-  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, ChatMessage, Person,
+  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CanopyResult, ChatMessage, ModelOption, Person,
   RiskResponse, Tier, View,
 } from './types'
 
@@ -13,6 +13,13 @@ const USER_KEY = 'sgw.user'
 const savedUser = (): Person | null => {
   try { return JSON.parse(localStorage.getItem(USER_KEY) ?? 'null') } catch { return null }
 }
+// The chosen AI model is remembered in this browser too
+const MODEL_KEY = 'sgw.model'
+const DEFAULT_MODEL = 'claude-opus-5-5'
+const savedModel = (): string => {
+  try { return localStorage.getItem(MODEL_KEY) ?? DEFAULT_MODEL } catch { return DEFAULT_MODEL }
+}
+const saveModel = (model: string) => { try { localStorage.setItem(MODEL_KEY, model) } catch { /* storage blocked */ } }
 const saveUser = (user: Person | null) => {
   try { user ? localStorage.setItem(USER_KEY, JSON.stringify(user)) : localStorage.removeItem(USER_KEY) } catch { /* storage blocked */ }
 }
@@ -28,6 +35,9 @@ interface State {
   maps: Record<number, AdvisoryMap>            // advisory -> storm GeoJSON (fetched when needed)
   alerts: Record<number, AlertsResponse>       // advisory -> alerts so far (driven by the rules score)
   details: Record<string, AssetDetail>         // asset_id -> full record (fetched when selected)
+  canopy: Record<string, CanopyResult | 'loading' | { error: string }>   // `${asset_id}|${model}` -> satellite analysis
+  models: ModelOption[]                        // AI models the backend offers
+  model: string                                // AI model used for every AI call (changed with /model)
 
   // --- UI state
   user: Person | null
@@ -51,6 +61,7 @@ interface State {
   step: () => void
   togglePlay: () => void
   select: (assetId: string | null) => void
+  analyseCanopy: (assetId: string) => Promise<void>
   markRead: (key: string) => void
   sendChat: (text: string) => Promise<void>
   approveReport: (messageId: string) => void
@@ -75,15 +86,15 @@ export const useStore = create<State>((set, get) => {
   }
 
   return {
-    loading: true, error: null, people: [], assets: [], advisories: [], risks: {}, maps: {}, alerts: {}, details: {},
+    loading: true, error: null, people: [], assets: [], advisories: [], risks: {}, maps: {}, alerts: {}, details: {}, canopy: {}, models: [], model: savedModel(),
     user: savedUser(), view: 'map', index: 0, playing: false, selectedId: null, read: {}, chat: [], invited: [], dockOpen: false, openAlert: null,
 
     init: async () => {
       try {
-        const [people, assets, advisories] = await Promise.all([api.people(), api.assets(), api.advisories()])
+        const [people, assets, advisories, models] = await Promise.all([api.people(), api.assets(), api.advisories(), api.models()])
         const all = await Promise.all(advisories.map((a) => api.risks(a.advisory)))
         const risks = Object.fromEntries(all.map((r) => [r.advisory, r]))
-        set({ people, assets, advisories, risks, loading: false })
+        set({ people, assets, advisories, risks, models, loading: false })
         await loadCurrent()
       } catch (e) {
         set({ loading: false, error: `Could not reach the backend (${(e as Error).message}). Is it running on port 8000?` })
@@ -109,6 +120,17 @@ export const useStore = create<State>((set, get) => {
       if (!playing && index >= advisories.length - 1) get().setIndex(0) // restart from the beginning
       set({ playing: !playing })
     },
+    analyseCanopy: async (assetId) => {
+      const model = get().model
+      const key = `${assetId}|${model}`
+      set((s) => ({ canopy: { ...s.canopy, [key]: 'loading' } }))
+      try {
+        const result = await api.canopy(assetId, model)
+        set((s) => ({ canopy: { ...s.canopy, [key]: result } }))
+      } catch (e) {
+        set((s) => ({ canopy: { ...s.canopy, [key]: { error: (e as Error).message } } }))
+      }
+    },
     select: (assetId) => {
       set({ selectedId: assetId })
       if (assetId && !get().details[assetId]) {
@@ -127,6 +149,19 @@ export const useStore = create<State>((set, get) => {
       const userMsg: ChatMessage = { id: crypto.randomUUID(), role: 'user', author: user, text: text.trim(), at }
       const cmd = parseCommand(text)
       if (cmd.kind === 'chat') { set((s) => ({ chat: [...s.chat, userMsg] })); return }   // no AI call
+      if (cmd.kind === 'model') {                                                        // switch model, no AI call
+        const { models, model } = get()
+        const chosen = models.find((m) => m.id === cmd.modelId)
+        const label = (id: string) => models.find((m) => m.id === id)?.label ?? id
+        const text = !cmd.modelId ? `AI model: ${label(model)}. Change it with /model <model>.`
+          : !chosen ? `Unknown model "${cmd.modelId}". Available: ${models.map((m) => m.id).join(', ')}`
+          : `${user.name} switched the AI model to ${chosen.label}`
+        if (chosen) { saveModel(chosen.id); set({ model: chosen.id }) }
+        const note: ChatMessage = { id: crypto.randomUUID(), role: 'system', author: user, text, at }
+        set((s) => ({ chat: [...s.chat, note] }))
+        return
+      }
+      const model = get().model
       const kind = cmd.kind === 'ask' ? 'answer' : cmd.kind
       const aiId = crypto.randomUUID()
       const pending: ChatMessage = { id: aiId, role: 'ai', author: null, text: '', at, kind, pending: true }
@@ -136,13 +171,13 @@ export const useStore = create<State>((set, get) => {
         set((s) => ({ chat: s.chat.map((m) => (m.id === aiId ? { ...m, ...patch, pending: false } : m)) }))
       try {
         let answer
-        if (cmd.kind === 'report') answer = await api.report(advisory.advisory, cmd.assetId)
+        if (cmd.kind === 'report') answer = await api.report(advisory.advisory, cmd.assetId, model)
         else if (cmd.kind === 'playbook') {
           const assetId = cmd.assetId ?? selectedId ?? alerts[advisory.advisory]?.room?.trigger_asset
           if (!assetId) throw new Error('Name an asset, e.g. /playbook PS-007 what now?')
-          answer = await api.playbook(assetId, cmd.question)
-        } else answer = await api.ask(advisory.advisory, cmd.question)
-        update({ text: answer.text, citations: answer.citations })
+          answer = await api.playbook(assetId, cmd.question, model)
+        } else answer = await api.ask(advisory.advisory, cmd.question, model)
+        update({ text: answer.text, citations: answer.citations, model: answer.model ?? model })
       } catch (e) {
         update({ text: (e as Error).message, error: true })
       }

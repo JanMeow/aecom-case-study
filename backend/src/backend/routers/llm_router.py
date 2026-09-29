@@ -1,23 +1,30 @@
 """AI in the incident room: plain questions and slash commands. Answers carry playbook citations."""
 from fastapi import APIRouter, HTTPException
 from anthropic.types import Message
-from backend.api.model import AskRequest, PlaybookRequest, ReportRequest
+from backend.api.model import AskRequest, ModelOption, PlaybookRequest, ReportRequest
 from backend.ETL.alerts import alerts_until, scores_for
 from backend.ETL.extraction import load_advisory
 from backend.LLM.model import CitedAnswer
-from backend.LLM.service import ask, ask_with_playbooks, get_report
-from backend.routers.shared import ASSETS, check_advisory, check_asset
+from backend.LLM.service import MODELS, ask, ask_with_playbooks, get_report
+from backend.routers.shared import ASSETS, check_advisory, check_asset, check_model
 
 router = APIRouter(prefix="/llm", tags=["llm"])
 
-_REPORTS: dict[tuple[int, str], CitedAnswer] = {}   # (advisory, asset_id) -> briefing; a report takes ~30 s
+_REPORTS: dict[tuple[int, str, str], CitedAnswer] = {}   # (advisory, asset_id, model) -> briefing; takes ~30 s
+
+
+@router.get("/models")
+def list_models() -> list[ModelOption]:
+    """AI models the platform can use; the first is the default."""
+    return [ModelOption(id=m, label=label) for m, label in MODELS.items()]
 
 
 @router.post("/ask")
 async def llm_ask(req: AskRequest) -> CitedAnswer:
     """Plain message in the room: a question about the current situation."""
     check_advisory(req.advisory)
-    return await ask(req.question, load_advisory(req.advisory), scores_for(req.advisory, "standard"), ASSETS)
+    return await ask(req.question, load_advisory(req.advisory), scores_for(req.advisory, "standard"), ASSETS,
+                     model=check_model(req.model))
 
 
 @router.post("/report")
@@ -31,13 +38,15 @@ async def llm_report(req: ReportRequest) -> CitedAnswer:
             raise HTTPException(400, "No incident room yet at this advisory; name an asset, e.g. /generate_report SUB-014")
         asset_id = room.trigger_asset
     asset = check_asset(asset_id)
-    key = (req.advisory, asset_id)
+    model = check_model(req.model)
+    key = (req.advisory, asset_id, model)
     if key not in _REPORTS:
-        _REPORTS[key] = await get_report(asset, scores_for(req.advisory, "standard")[asset_id], load_advisory(req.advisory))
+        _REPORTS[key] = await get_report(asset, scores_for(req.advisory, "standard")[asset_id], load_advisory(req.advisory),
+                                         model=model)
     return _REPORTS[key]
 
 
 @router.post("/playbook")
 async def llm_playbook(req: PlaybookRequest) -> CitedAnswer:
     """/playbook: what the playbooks say about one asset."""
-    return await ask_with_playbooks(req.question, check_asset(req.asset_id))
+    return await ask_with_playbooks(req.question, check_asset(req.asset_id), model=check_model(req.model))
