@@ -2,7 +2,7 @@
 
 Prototype for the AECOM AI Solution Engineer case study. It shows the MVP workflow from the PRD end to end for Southeastern Grid & Water (SGW), a fictional power and water utility around Tampa Bay and Southwest Florida:
 
-**six scattered data sources → one record per asset → risk score per asset as a hurricane approaches → rule-based alerts → an AI-assisted incident room with cited, human-approved briefings.**
+**six scattered data sources → one record per asset → risk score per asset as a hurricane approaches → rule-based alerts → an AI-assisted incident room with cited, human-approved briefings.** Two Phase 2 previews sit on top: a what-if storm forecast (ML) and tree canopy from satellite imagery (computer vision).
 
 It replays **Hurricane Ian (2022)** using the real National Hurricane Center advisories. All SGW data (assets, staff, maintenance, field reports, playbooks) is mocked.
 
@@ -123,6 +123,8 @@ Example, `SUB-014` at advisory 24: substation in the 64 kt zone → 50%; ×1.3 c
 
 **ML score** (`ML/train_predict.py`): replaces only step 2 with a LightGBM model trained on synthetic storm outcomes. It also uses tree cover, age, elevation, line length and past storm failures. On 80 unseen storms it beats the rules (Brier 0.117 vs 0.134, AUC 0.870 vs 0.858), and explains each prediction with SHAP values. Labels are synthetic, so this shows the pipeline, not real accuracy.
 
+**What-if forecast** (`GET /forecast`, Forecast panel on an asset): "what if a 34 / 50 / 64 kt storm hit this asset, its region or the whole area?". `ml_simulate_risk_score()` replaces step 1 with the chosen wind zone for the assets hit (0 elsewhere), then runs the same ML steps 2–5, so the cascade is included: with `scope=region` an asset's suppliers are hit too.
+
 ---
 
 ## Alerts (deterministic)
@@ -137,17 +139,30 @@ Example, `SUB-014` at advisory 24: substation in the 64 kt zone → 50%; ×1.3 c
 
 ## AI in the incident room
 
-Plain messages go to the people in the room. Only slash commands call Claude (`claude-opus-5-5`):
+Plain messages go to the people in the room. Only slash commands call Claude (default `claude-opus-5-5`; switch with `/model`):
 
 | Command | Endpoint | Does |
 |---|---|---|
-| `/ask question` | `POST /llm/ask` | Question about the current situation (storm, assets at risk, any asset named) |
+| `/ask question` | `POST /llm/ask` | Question about the current situation (storm, assets at risk, any asset named). Answers from the data; no playbook citations |
 | `/generate_report [asset]` | `POST /llm/report` | Situation briefing in PB-04 §4's five sections; defaults to the room's trigger asset. Draft + **Approve** |
 | `/playbook [asset] question` | `POST /llm/playbook` | What the playbooks say for that asset |
+| `/model [id]` | `GET /llm/models` | Switch the Claude model (Opus 5.5, Sonnet 5, Haiku 4.5, Fable 5.1); every AI answer shows which model wrote it |
 
 - **Verifiable citations.** Playbooks are sent as documents with Anthropic's **Citations** feature (`LLM/playbook.py`). The API returns the exact passage behind each claim; hovering a `PB-02 §7` chip shows it. With only 5 short playbooks, no retrieval is needed; at scale, a retrieval step (e.g. pgvector) would pick the sections, with the same citation format.
 - **Prompt caching** on the playbook documents; reports cached per (advisory, asset).
 - **Guardrails in the prompts:** take every number from the data, say what's missing, recommend but never decide.
+
+---
+
+## Computer vision: tree canopy (Phase 2 preview)
+
+The **Tree canopy** panel on an asset (`POST /cv/tree_canopy_pct`, `CV/`) checks the GIS vegetation record against imagery:
+
+1. `esri.py`: satellite image of the area around the asset from Esri World Imagery (300 m; 800 m for lines).
+2. `green_pixel.py`: **green cover** by pixel colour, no model: Excess Green index (2g − r − b) with a per-image Otsu threshold, clamped to 0.03–0.15. Returns the % and a highlighted mask. Counts grass as well as trees.
+3. `inference.py`: Claude vision (structured output, `CanopyInference`) estimates **tree canopy only**, with notes on trees near equipment. The GIS value is left out of the prompt, so it is an independent check.
+
+The panel shows GIS vs measured green vs AI canopy side by side. Results are not fed back into the ML score yet.
 
 ---
 
@@ -160,7 +175,10 @@ Plain messages go to the people in the room. Only slash commands call Claude (`c
 | GET | `/risks?advisory=n` | Rules and ML scores per asset, with reasons and field status |
 | GET | `/alerts?advisory=n` | Alerts sent so far and the incident room |
 | GET | `/people` | Staff directory |
+| GET | `/forecast?asset_id=&wind_zone=34\|50\|64&scope=asset\|region\|all` | What-if ML risk for one asset, and how many assets are hit |
+| GET | `/llm/models` | Claude models available to `/model` |
 | POST | `/llm/ask`, `/llm/report`, `/llm/playbook` | AI answers with citations |
+| POST | `/cv/tree_canopy_pct` | Satellite image, green cover and Claude's canopy estimate for an asset |
 
 ---
 
@@ -171,11 +189,12 @@ backend/
   pyproject.toml, uv.lock
   src/backend/
     main.py                 FastAPI app: CORS + routers
-    routers/                assets, advisories, risk, people, llm (+ shared.py: data loaded once, checks)
+    routers/                assets, advisories, risk, people, llm, cv (+ shared.py: data loaded once, checks)
     api/model.py            API response and request shapes
     ETL/                    extraction.py (aggregate), risk_score.py, threshold.py, alerts.py, model.py
     ML/train_predict.py     train / predict the ML score
-    LLM/                    service.py (Claude calls), prompt.py, playbook.py (citations), model.py
+    LLM/                    service.py (Claude calls, MODELS), prompt.py, playbook.py (citations), model.py
+    CV/                     esri.py (imagery), green_pixel.py (green cover), inference.py (Claude vision)
     config/setting.py       loads .env (ANTHROPIC_API_KEY)
     data/                   sources, processed baseline, ML data and model (see data/README.md)
     scripts/                generate.py (mock data), convert_nhc.py (NHC shapefiles → GeoJSON)
@@ -187,7 +206,8 @@ frontend/
     commands.ts             incident room slash commands
     colors.ts, index.css    colour palette (defined once in index.css)
     components/             MapView, Timeline, AssetPanel, DependencyGraph, AssetTable, Inbox,
-                            IncidentRoom, RoomDock, ChatInput, AiMessage, Notifications, Login, ...
+                            IncidentRoom, RoomDock, ChatInput, AiMessage, Notifications, CanopyPanel,
+                            ForecastPanel, Login, ...
 ```
 
 ---
@@ -215,6 +235,10 @@ uv run python -m backend.ML.train_predict                                  # ret
 | Map, dependency lines and diagram, asset table, inbox, notifications | Built |
 | Incident room: AI commands, citations, report approval, @ tags, invites | Built |
 | Fake login with demo accounts | Built |
+| What-if storm forecast (ML), tree canopy from satellite imagery, `/model` switching | Built (Phase 2 previews) |
+| AI posts first when the room opens (PRD F10) | Partly: the briefing is drafted when someone types `/generate_report` |
+| Threshold editing (F8), event log (F12), resource pre-allocation (F13), AI quick actions (F14) | Not implemented |
+| Storm surge, Teams / SMS delivery | Not implemented: surge is approximated by the flood-zone bonus; alerts appear in the app |
 | Full tool-use (ReAct) loop for the AI | Not implemented: the AI gets the relevant data in one call |
 | Event bus and live NWS weather feed | Not implemented: the replay plays the role of incoming advisories |
 | Playbook retrieval (embeddings) | Not implemented: not needed for 5 playbooks |
@@ -225,6 +249,7 @@ uv run python -m backend.ML.train_predict                                  # ret
 - All SGW data is mocked; Hurricane Ian advisories are real NHC data.
 - Scoring settings are illustrative, in the style of FEMA Hazus damage tables, not calibrated engineering values. Calibration against SGW's outage history is what the ML mode is for.
 - ML labels are synthetic.
+- Assets are fictional but placed at real coordinates, so some satellite images show unrelated sites (e.g. `SUB-014` sits on an airport). The canopy estimate comes from a general vision model, not a trained segmentation model, and the image date is unknown.
 - Chat, invites and report approvals are kept in the browser only; nothing is stored or sent. In production the incident room would be a Microsoft Teams channel, and approvals would be stored as an audit trail.
 - The login is fake (no authentication). Production would use SGW single sign-on.
 - The AI uses the public Anthropic API; production would use a private endpoint (e.g. AWS Bedrock or Azure).

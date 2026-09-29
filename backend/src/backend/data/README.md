@@ -23,7 +23,7 @@ uv run --no-project --with pyshp python scripts/convert_nhc.py # re-convert NHC 
 | Emergency plans | `sources/plans/PB-0*.md` | Markdown | 5 playbooks with numbered sections, cited as `[PB-02 §4]` |
 | Weather | `sources/weather/ian_2022/raw/*.zip` | NHC shapefiles | Real advisories 12–28 (26–29 Sep 2022) |
 | Weather | `sources/weather/ian_2022/advisories.geojson` | GeoJSON | All 17 advisories in one file. `properties.advisories` lists them in replay order (issue time, centre, max wind, category). Each feature has an `advisory` number and a `layer`: `cone`, `track`, `forecast_point`, `wind_radii` (34/50/64 kt, current and forecast) or `watch_warning` |
-| ML (synthetic) | `ml/storm_outcomes.csv` | CSV | 400 simulated storms × 58 assets = 23,200 rows, `failed` label (~23% positive) |
+| ML (synthetic) | `ml/storm_outcomes.csv` | CSV | 400 simulated storms × 58 assets = 23,200 rows, `failed` label (~16% positive) |
 
 ## How the sources join
 
@@ -68,7 +68,7 @@ See `ETL/risk_score.py` (logic) and `ETL/threshold.py` (settings).
 - **Flood:** a `flood_zone` of AE or VE adds 30% inside the 64 kt zone.
 - **Cascade:** `upstream` links pass their likelihood down. `has_backup_power` halves what a failed power supply passes on.
 - **Consequence:** `customers_served` and `critical_facilities`, for the asset and everything `downstream`.
-- **`tree_canopy_pct`:** in the GIS data, but **the rules formula ignores it**. It is the hidden factor the ML model can learn. Currently genereated by Ai, in the future can even read from satellite image.
+- **`tree_canopy_pct`:** in the GIS data, but **the rules formula ignores it**. It is the hidden factor the ML model can learn. Currently set by `generate.py`; the Tree canopy panel (CV) checks it against satellite imagery.
 
 ## Synthetic ML labels
 
@@ -96,7 +96,7 @@ The forecast discount is not a feature. A model predicts as if the zone arrives,
 
 The labels are then sampled with randomness.
 
-**Result** from `python -m backend.ML.train` (LightGBM, trained on 320 storms, tested on 80 unseen storms, only assets inside a wind zone):
+**Result** from `python -m backend.ML.train_predict` (LightGBM, trained on 320 storms, tested on 80 unseen storms, only assets inside a wind zone):
 
 | Model | AUC | Brier score (lower is better) |
 |---|---|---|
