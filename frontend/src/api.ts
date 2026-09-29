@@ -1,6 +1,7 @@
 // Calls to the FastAPI backend. Vite forwards /api/* to http://localhost:8000 (vite.config.ts).
 import type {
-  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CitedAnswer, Mode, Person, RiskResponse,
+  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CanopyResult, CitedAnswer, Mode, Person,
+  RiskResponse,
 } from './types'
 
 async function get<T>(path: string): Promise<T> {
@@ -32,4 +33,6 @@ export const api = {
   ask: (advisory: number, question: string) => post<CitedAnswer>('/llm/ask', { advisory, question }),
   report: (advisory: number, asset_id?: string) => post<CitedAnswer>('/llm/report', { advisory, asset_id }),
   playbook: (asset_id: string, question: string) => post<CitedAnswer>('/llm/playbook', { asset_id, question }),
+  // Computer vision
+  canopy: (asset_id: string) => post<CanopyResult>('/cv/tree_canopy_pct', { asset_id }),
 }

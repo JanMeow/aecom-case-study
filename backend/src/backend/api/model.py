@@ -1,6 +1,7 @@
 """Response shapes for the API (what the frontend receives)."""
 from datetime import datetime
 from pydantic import BaseModel
+from backend.CV.model import CanopyInference
 from backend.ETL.model import Alert, IncidentRoom, Location, RiskResult
 from typing import Optional
 
@@ -86,3 +87,23 @@ class PlaybookRequest(BaseModel):
     """/playbook [asset] question: what the playbooks say for one asset."""
     asset_id: str
     question: str
+
+
+# ---------------------------------------------------------------------------
+# Computer vision (tree canopy from satellite imagery)
+# ---------------------------------------------------------------------------
+class CanopyRequest(BaseModel):
+    asset_id: str
+
+
+class CanopyResponse(BaseModel):
+    """Tree canopy around an asset: GIS record vs what the imagery shows."""
+    asset_id: str
+    gis_tree_canopy_pct: float | None      # what the GIS record says
+    green_pct: float                       # measured from pixel colours (Excess Green + Otsu); includes grass
+    threshold: float
+    ai: CanopyInference                    # the vision model's tree canopy estimate and notes
+    image: str                             # satellite image, as a data URL (data:image/png;base64,...)
+    mask: str                              # same image with the counted green pixels highlighted
+    size_m: float                          # width of the area shown
+    attribution: str                       # imagery credit, required by Esri

@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { api } from './api'
 import { parseCommand } from './commands'
 import type {
-  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, ChatMessage, Person,
+  AdvisoryMap, AdvisorySummary, AlertsResponse, AssetDetail, AssetSummary, CanopyResult, ChatMessage, Person,
   RiskResponse, Tier, View,
 } from './types'
 
@@ -28,6 +28,7 @@ interface State {
   maps: Record<number, AdvisoryMap>            // advisory -> storm GeoJSON (fetched when needed)
   alerts: Record<number, AlertsResponse>       // advisory -> alerts so far (driven by the rules score)
   details: Record<string, AssetDetail>         // asset_id -> full record (fetched when selected)
+  canopy: Record<string, CanopyResult | 'loading' | { error: string }>   // asset_id -> satellite analysis (on request)
 
   // --- UI state
   user: Person | null
@@ -51,6 +52,7 @@ interface State {
   step: () => void
   togglePlay: () => void
   select: (assetId: string | null) => void
+  analyseCanopy: (assetId: string) => Promise<void>
   markRead: (key: string) => void
   sendChat: (text: string) => Promise<void>
   approveReport: (messageId: string) => void
@@ -75,7 +77,7 @@ export const useStore = create<State>((set, get) => {
   }
 
   return {
-    loading: true, error: null, people: [], assets: [], advisories: [], risks: {}, maps: {}, alerts: {}, details: {},
+    loading: true, error: null, people: [], assets: [], advisories: [], risks: {}, maps: {}, alerts: {}, details: {}, canopy: {},
     user: savedUser(), view: 'map', index: 0, playing: false, selectedId: null, read: {}, chat: [], invited: [], dockOpen: false, openAlert: null,
 
     init: async () => {
@@ -108,6 +110,15 @@ export const useStore = create<State>((set, get) => {
       const { playing, index, advisories } = get()
       if (!playing && index >= advisories.length - 1) get().setIndex(0) // restart from the beginning
       set({ playing: !playing })
+    },
+    analyseCanopy: async (assetId) => {
+      set((s) => ({ canopy: { ...s.canopy, [assetId]: 'loading' } }))
+      try {
+        const result = await api.canopy(assetId)
+        set((s) => ({ canopy: { ...s.canopy, [assetId]: result } }))
+      } catch (e) {
+        set((s) => ({ canopy: { ...s.canopy, [assetId]: { error: (e as Error).message } } }))
+      }
     },
     select: (assetId) => {
       set({ selectedId: assetId })

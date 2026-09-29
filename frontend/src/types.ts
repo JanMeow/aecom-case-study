@@ -143,3 +143,16 @@ export interface ChatMessage {
   error?: boolean
   approved?: { by: string; at: string }     // reports: approved by a person
 }
+
+// Tree canopy around an asset from satellite imagery (POST /cv/tree_canopy_pct)
+export interface CanopyResult {
+  asset_id: string
+  gis_tree_canopy_pct: number | null   // what the GIS record says
+  green_pct: number                    // measured from pixel colours; includes grass
+  threshold: number
+  ai: { tree_canopy_pct: number; confidence: 'low' | 'medium' | 'high'; notes: string }
+  image: string                        // data URL
+  mask: string                         // data URL, counted green pixels highlighted
+  size_m: number
+  attribution: string
+}

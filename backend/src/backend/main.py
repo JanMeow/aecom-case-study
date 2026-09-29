@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import advisories_router, assets_router, llm_router, people_router, risk_router
+from backend.routers import advisories_router, assets_router, cv_router, llm_router, people_router, risk_router
 
 
 #========================================
@@ -27,6 +27,7 @@ app.include_router(advisories_router.router)   # /advisories, /advisories/{advis
 app.include_router(risk_router.router)         # /risks, /alerts
 app.include_router(people_router.router)       # /people
 app.include_router(llm_router.router)          # /llm/ask, /llm/report, /llm/playbook
+app.include_router(cv_router.router)           # /cv/tree_canopy_pct
 
 
 @app.get("/")
