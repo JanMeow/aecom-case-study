@@ -1,0 +1,20 @@
+# secrets: pass ANTHROPIC_API_KEY at runtime instead
+**/.env
+
+# local environments and caches
+.venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.ruff_cache
+
+# only needed to re-run scripts/convert_nhc.py, not at runtime
+src/backend/data/sources/weather/ian_2022/raw
+
+.git
+.gitignore
+.DS_Store
+.vscode
+.idea
+Dockerfile
+.dockerignore

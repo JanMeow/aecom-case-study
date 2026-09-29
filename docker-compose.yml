@@ -1,0 +1,18 @@
+# Whole demo in two containers:  docker compose up --build   ->  http://localhost:5173
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - path: backend/src/backend/.env   # ANTHROPIC_API_KEY; without it everything but the AI works
+        required: false
+    ports:
+      - "8000:8000"                      # optional: API docs at http://localhost:8000/docs
+
+  frontend:
+    build: ./frontend
+    environment:
+      BACKEND_URL: http://backend:8000   # nginx forwards /api/* here
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

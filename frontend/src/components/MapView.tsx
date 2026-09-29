@@ -1,8 +1,13 @@
 import type { Feature, FeatureCollection, LineString } from 'geojson'
-import { type GeoJSONSource, Map as MapLibreMap, type MapLayerMouseEvent, NavigationControl } from 'maplibre-gl'
+import { type GeoJSONSource, Map as MapLibreMap, type MapLayerMouseEvent, NavigationControl, setWorkerUrl } from 'maplibre-gl'
+// MapLibre finds its worker at runtime, so the production build never copies it. ?worker&url makes Vite bundle
+// the worker (with the shared chunk it imports) and hand back its URL.
+import mapWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { palette, tierColor } from '../colors'
 import { useCurrent, useStore } from '../store'
+
+setWorkerUrl(mapWorkerUrl)
 
 const BASEMAP = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json' // free, no API key
 const SERVICE_AREA: [[number, number], [number, number]] = [[-83.3, 26.1], [-81.3, 28.4]]

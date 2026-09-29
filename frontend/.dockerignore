@@ -1,0 +1,16 @@
+# installed and built inside the image
+node_modules
+dist
+dist-ssr
+
+*.log
+*.local
+.env*
+
+.git
+.gitignore
+.DS_Store
+.vscode
+.idea
+Dockerfile
+.dockerignore

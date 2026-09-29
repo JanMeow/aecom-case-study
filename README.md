@@ -48,6 +48,15 @@ Vite forwards `/api/*` to the backend on port 8000, so both must be running.
 3. Watch for the **first alerts** (27 Sep 2022 15:00 UTC) and the **incident room opening** (28 Sep 15:00 UTC).
 4. In the incident room, type `/` for AI commands, e.g. `/generate_report`.
 
+### Or with Docker
+
+```bash
+cp backend/src/backend/.env.example backend/src/backend/.env   # add your ANTHROPIC_API_KEY
+docker compose up --build                                   # http://localhost:5173 (API on :8000)
+```
+
+Two containers: the backend (uvicorn) and the frontend (nginx serving the built app and forwarding `/api/*` to the backend). The key is read at runtime from `.env`, never built into an image.
+
 The processed data and trained ML model are committed, so nothing needs generating first (see [Regenerating data](#regenerating-data-and-the-model)).
 
 ---
@@ -242,7 +251,8 @@ uv run python -m backend.ML.train_predict                                  # ret
 | Full tool-use (ReAct) loop for the AI | Not implemented: the AI gets the relevant data in one call |
 | Event bus and live NWS weather feed | Not implemented: the replay plays the role of incoming advisories |
 | Playbook retrieval (embeddings) | Not implemented: not needed for 5 playbooks |
-| Asset similarity search, 3D map, Docker Compose | Not implemented |
+| Docker Compose (backend + nginx frontend) | Built |
+| Asset similarity search, 3D map | Not implemented |
 
 ## Assumptions and limitations
 
