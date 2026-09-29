@@ -10,15 +10,44 @@ It replays **Hurricane Ian (2022)** using the real National Hurricane Center adv
 
 ## Quick start
 
-### Prerequisites
+Two ways to run it: **Docker** (one command, nothing else to install) or **locally** (for development, with hot reload). Either way you need an Anthropic API key for the AI features; everything else works without it.
+
+### Option A: Docker
+
+Needs [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine with Compose 2.24+).
+
+```bash
+cp backend/src/backend/.env.example backend/src/backend/.env   # then put your ANTHROPIC_API_KEY in it
+docker compose up --build                                   # first build takes a few minutes
+```
+
+Open http://localhost:5173 (API docs at http://localhost:8000/docs), then follow [Sign in and replay](#sign-in-and-replay).
+
+| Task | Command |
+|---|---|
+| Run in the background | `docker compose up --build -d` |
+| Follow the logs | `docker compose logs -f` (or `logs -f backend`) |
+| Stop | `docker compose down` (or Ctrl+C if running in the foreground) |
+| After changing code | `docker compose up --build` (without `--build` you get the old image) |
+| After changing `.env` | `docker compose up -d --force-recreate backend` (no rebuild needed) |
+
+What runs:
+
+| Container | Port | What it is |
+|---|---|---|
+| `backend` | 8000 | FastAPI on uvicorn (`backend/Dockerfile`, Python 3.13 + uv) |
+| `frontend` | 5173 → 80 | nginx serving the built React app and forwarding `/api/*` to the backend (`frontend/Dockerfile`, `nginx.conf.template`) |
+
+The API key is read from `.env` when the backend container starts; it is never built into an image. If ports 5173 or 8000 are busy (e.g. the local dev servers are still running), stop those first or change the left-hand port in `docker-compose.yml`.
+
+### Option B: run locally
 
 | Tool | Version | Used for |
 |---|---|---|
 | [uv](https://docs.astral.sh/uv/) | recent | Python backend (installs Python 3.13 and dependencies) |
 | Node.js | 20.19+ (22 LTS recommended) | React frontend |
-| Anthropic API key | — | AI features in the incident room (everything else works without it) |
 
-### 1. Backend (FastAPI, port 8000)
+**1. Backend (FastAPI, port 8000)**
 
 ```bash
 cd backend
@@ -29,9 +58,7 @@ uv run backend                                  # starts http://127.0.0.1:8000
 
 Interactive API docs: http://127.0.0.1:8000/docs
 
-### 2. Frontend (React + Vite, port 5173)
-
-In a second terminal:
+**2. Frontend (React + Vite, port 5173)**, in a second terminal:
 
 ```bash
 cd frontend
@@ -41,21 +68,12 @@ npm run dev                                     # starts http://localhost:5173
 
 Vite forwards `/api/*` to the backend on port 8000, so both must be running.
 
-### 3. Sign in and replay
+### Sign in and replay
 
 1. Open http://localhost:5173 and pick a demo account (e.g. **Hannah Cole**, T&D Ops South supervisor). Any password works.
 2. Press **▶ Play** on the timeline (left) or click any advisory.
 3. Watch for the **first alerts** (27 Sep 2022 15:00 UTC) and the **incident room opening** (28 Sep 15:00 UTC).
 4. In the incident room, type `/` for AI commands, e.g. `/generate_report`.
-
-### Or with Docker
-
-```bash
-cp backend/src/backend/.env.example backend/src/backend/.env   # add your ANTHROPIC_API_KEY
-docker compose up --build                                   # http://localhost:5173 (API on :8000)
-```
-
-Two containers: the backend (uvicorn) and the frontend (nginx serving the built app and forwarding `/api/*` to the backend). The key is read at runtime from `.env`, never built into an image.
 
 The processed data and trained ML model are committed, so nothing needs generating first (see [Regenerating data](#regenerating-data-and-the-model)).
 
