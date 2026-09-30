@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useCurrent, useStore } from '../store'
 import type { RiskResult } from '../types'
 import CanopyPanel from './CanopyPanel'
@@ -11,6 +12,7 @@ const label = (s: string) => s.replace(/_/g, ' ')
 export default function AssetPanel() {
   const { selectedId, select, details } = useStore()
   const { risk } = useCurrent()
+  const [forecastOpen, setForecastOpen] = useState(false)   // what-if forecast is collapsed until clicked
   if (!selectedId) return null
   const d = details[selectedId]
   const r = risk?.results.find((x) => x.asset_id === selectedId)
@@ -51,8 +53,12 @@ export default function AssetPanel() {
           </section>
 
           <section className="space-y-2 border-b border-slate-200 p-4 text-xs">
-            <div className="font-semibold text-slate-500">Forecast: what if a storm hit? (ML)</div>
-            <ForecastPanel assetId={selectedId} />
+            <button onClick={() => setForecastOpen(!forecastOpen)}
+                    className="flex w-full items-center justify-between font-semibold text-slate-500 hover:text-slate-800">
+              <span>Forecast: what if a storm hit? (ML)</span>
+              <span className="text-slate-400">{forecastOpen ? '▾' : '▸'}</span>
+            </button>
+            {forecastOpen && <ForecastPanel assetId={selectedId} />}
           </section>
 
           <section className="space-y-2 border-b border-slate-200 p-4 text-xs">
